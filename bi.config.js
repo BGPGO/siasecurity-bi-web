@@ -2,7 +2,7 @@ module.exports = {
   cliente: {
     nome: "SIA Security",
     subdomain: "siasecurity-bi",
-    coolify_app_uuid: "",
+    coolify_app_uuid: "j13tmx96m02wqyr5k0egyvl3",
     cor_primaria: "#3b82f6",
   },
 
