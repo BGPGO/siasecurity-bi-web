@@ -159,6 +159,49 @@ module.exports = {
       console.error('  movs erro:', e.message);
     }
 
+    // Pedidos de venda faturados
+    let pedidosRaw = [];
+    try {
+      pedidosRaw = await fetchAllPaginated(
+        '/produtos/pedido/', 'ListarPedidos',
+        { cStatus: 'FATURADO' },
+        'pedido_venda_produto',
+        'pedidos',
+        { style: 'camel' }
+      );
+    } catch (e) {
+      console.error('  pedidos erro:', e.message);
+    }
+
+    // Normaliza pedidos pro schema canônico
+    const dt = (s) => s ? s.split('/').reverse().join('-') : null;
+    const pedidosCanonical = [];
+    for (const ped of pedidosRaw) {
+      const cab = ped.cabecalho || {};
+      const info = ped.informacoes_adicionais || {};
+      const status = (cab.cCodStatus || '').toUpperCase();
+      if (status !== 'FATURADO') continue;
+      const itens = Array.isArray(ped.det) ? ped.det : [];
+      for (const det of itens) {
+        const prod = det.produto || {};
+        pedidosCanonical.push({
+          nCodPed:    cab.nCodPed || '',
+          data:       dt(cab.dDtPedido) || '',
+          status,
+          cliente:    info.cNomRazSocial || cab.cNomCliente || '',
+          vendedor:   info.cCodVendedor  || info.cVendedor  || '',
+          produto:    prod.cDescricao    || prod.cDescrProduto || '',
+          familia:    prod.cNomFamProd   || 'Sem Família',
+          codigo:     prod.cCodProduto   || '',
+          qtd:        Number(prod.nQtdPedido    || 0),
+          vlrUnit:    Number(prod.nVlrUnitario  || 0),
+          valor:      Number(prod.nVlrTotal     || prod.nValorTotal || 0),
+        });
+      }
+    }
+    fs.writeFileSync(path.join(dataDir, 'pedidos.json'), JSON.stringify(pedidosCanonical, null, 2));
+    console.log(`  pedidos faturados: ${pedidosCanonical.length} itens (${pedidosRaw.length} pedidos)`);
+
     // Mapas pra resolver IDs
     const catMap = new Map(categoriasRaw.map(c => [c.codigo, c.descricao]));
     const deptMap = new Map(departamentosRaw.map(d => [d.codigo, d.descricao]));
@@ -197,7 +240,10 @@ module.exports = {
       });
     }
 
-    fs.writeFileSync(path.join(dataDir, 'movimentos.json'), JSON.stringify(movimentosCanonical, null, 2));
+    // movimentos.json = RAW Omie (m.detalhes/m.resumo/m.departamentos), consumido por build-data.cjs.
+    // O canonical fica em movimentos_canonical.json — pra multi-fonte ou consumidores futuros.
+    fs.writeFileSync(path.join(dataDir, 'movimentos.json'), JSON.stringify(movimentosOmie, null, 2));
+    fs.writeFileSync(path.join(dataDir, 'movimentos_canonical.json'), JSON.stringify(movimentosCanonical, null, 2));
     fs.writeFileSync(path.join(dataDir, '_summary.json'), JSON.stringify({
       adapter: 'omie',
       timestamp: new Date().toISOString(),
@@ -209,6 +255,7 @@ module.exports = {
         departamentos: departamentosRaw.length,
         clientes: clientes.length,
         contas_correntes: contasCorrentes.length,
+        pedidos_itens: pedidosCanonical.length,
       },
     }, null, 2));
 

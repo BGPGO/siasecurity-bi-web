@@ -78,34 +78,27 @@ const FatVerticalBars = ({ items, height = 240, formatter = (v) => "R$ " + forma
 
 const PageFaturamentoProduto = ({ drilldown, setDrilldown }) => {
   const E = (typeof window !== "undefined" && window.BIT_EXTRAS) || null;
-  if (!E || !E.faturamento || !E.faturamento.items) {
-    return (
-      <div className="page">
-        <div className="page-title"><div><h1>Faturamento por Produto</h1></div></div>
-        <div className="card"><h2 className="card-title">Sem dados</h2><p>Rode <code>node build-data-extras.cjs</code> pra gerar data-extras.js.</p></div>
-      </div>
-    );
-  }
+  const hasFat = !!(E && E.faturamento && E.faturamento.items);
+  const hasPed = !!(E && E.pedidos && E.pedidos.items);
 
-  // Filtros reativos
+  const [tab, setTab] = useState('xlsx');
+
+  const MESES_ABBR = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+
+  // ---- XLSX tab filters ----
   const [fMes, setFMes] = useState("Todos");
   const [fVendedor, setFVendedor] = useState("Todos");
   const [fFamilia, setFFamilia] = useState("Todos");
 
-  const MESES_ABBR = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
-  const items = E.faturamento.items;
+  // ---- Pedidos tab filters ----
+  const [fPedMes, setFPedMes] = useState("Todos");
+  const [fPedVendedor, setFPedVendedor] = useState("Todos");
+  const [fPedFamilia, setFPedFamilia] = useState("Todos");
 
-  // Aplica todos os filtros nos items raw e recomputa todos os agregados
-  const filtered = useMemo(() => {
-    return items.filter(it => {
-      if (fMes !== "Todos" && MESES_ABBR[it.mes] !== fMes) return false;
-      if (fVendedor !== "Todos" && it.vendedor !== fVendedor) return false;
-      if (fFamilia !== "Todos" && it.familia !== fFamilia) return false;
-      return true;
-    });
-  }, [items, fMes, fVendedor, fFamilia]);
+  const fatItems = hasFat ? E.faturamento.items : [];
+  const pedItems = hasPed ? E.pedidos.items : [];
 
-  // Recomputa agregados a partir de filtered
+  // Shared aggregation helper
   const aggBy = (arr, keyFn) => {
     const m = new Map();
     for (const it of arr) {
@@ -118,7 +111,18 @@ const PageFaturamentoProduto = ({ drilldown, setDrilldown }) => {
     return [...m.values()].sort((a, b) => b.value - a.value);
   };
 
+  // ---- XLSX tab memos ----
+  const filtered = useMemo(() => {
+    return fatItems.filter(it => {
+      if (fMes !== "Todos" && MESES_ABBR[it.mes] !== fMes) return false;
+      if (fVendedor !== "Todos" && it.vendedor !== fVendedor) return false;
+      if (fFamilia !== "Todos" && it.familia !== fFamilia) return false;
+      return true;
+    });
+  }, [fatItems, fMes, fVendedor, fFamilia]);
+
   const T = useMemo(() => {
+    if (!hasFat) return { totalValor: 0, totalQtd: 0, numNFs: 0, numClientes: 0, numProdutos: 0, ticketMedio: 0, anoRef: '' };
     const totalValor = filtered.reduce((s, it) => s + it.valor, 0);
     const totalQtd = filtered.reduce((s, it) => s + it.qtd, 0);
     const numNFs = new Set(filtered.map(it => it.nf).filter(Boolean)).size;
@@ -126,27 +130,19 @@ const PageFaturamentoProduto = ({ drilldown, setDrilldown }) => {
     const numProdutos = new Set(filtered.map(it => it.produto).filter(Boolean)).size;
     const ticketMedio = numNFs > 0 ? totalValor / numNFs : 0;
     return { totalValor, totalQtd, numNFs, numClientes, numProdutos, ticketMedio, anoRef: E.faturamento.totais.anoRef };
-  }, [filtered, E.faturamento.totais.anoRef]);
+  }, [filtered, hasFat]);
 
   const porFamilia = useMemo(() => aggBy(filtered, x => x.familia).slice(0, 20), [filtered]);
   const porVendedor = useMemo(() => aggBy(filtered, x => x.vendedor).slice(0, 20), [filtered]);
-
-  // Vendas por Anúncio = vendas por família (real, do XLSX)
   const vendasPorAnuncio = useMemo(() => porFamilia.slice(0, 8), [porFamilia]);
-
-  // Top produtos individuais
   const topProdutos = useMemo(() => {
     return aggBy(filtered, x => x.produto).slice(0, 6).map(d => ({
       name: d.name.length > 40 ? d.name.slice(0, 40) + '…' : d.name, value: d.value,
     }));
   }, [filtered]);
-
-  // Top vendedores (filtra "Sem Vendedor"/"N/D")
   const topVendedores = useMemo(() => {
     return porVendedor.filter(v => v.name && v.name !== "N/D" && v.name !== "Sem Vendedor").slice(0, 6);
   }, [porVendedor]);
-
-  // Matriz produto × mês (de filtered)
   const matrizProdutosFull = useMemo(() => {
     const map = new Map();
     for (const it of filtered) {
@@ -158,7 +154,6 @@ const PageFaturamentoProduto = ({ drilldown, setDrilldown }) => {
     }
     return [...map.values()].sort((a, b) => b.total - a.total);
   }, [filtered]);
-
   const matrizMesesIdx = useMemo(() => {
     const set = new Set();
     matrizProdutosFull.forEach(p => p.meses.forEach((v, i) => { if (v > 0) set.add(i); }));
@@ -171,117 +166,251 @@ const PageFaturamentoProduto = ({ drilldown, setDrilldown }) => {
       return { nome: cleanName, total: p.total, meses: matrizMesesIdx.map(i => p.meses[i] || 0) };
     });
   }, [matrizProdutosFull, matrizMesesIdx]);
-
-  // Opções dos dropdowns (sempre todas, calculadas dos items raw)
-  const mesOpts = useMemo(() => ["Todos", ...[...new Set(items.map(it => MESES_ABBR[it.mes]).filter(Boolean))]], [items]);
-  const familiaOpts = useMemo(() => ["Todos", ...[...new Set(items.map(it => it.familia).filter(f => f && f !== 'Sem Família'))].sort()], [items]);
-  const vendedorOpts = useMemo(() => ["Todos", ...[...new Set(items.map(it => it.vendedor).filter(v => v && v !== 'N/D' && v !== 'Sem Vendedor'))].sort()], [items]);
-
+  const mesOpts = useMemo(() => ["Todos", ...[...new Set(fatItems.map(it => MESES_ABBR[it.mes]).filter(Boolean))]], [fatItems]);
+  const familiaOpts = useMemo(() => ["Todos", ...[...new Set(fatItems.map(it => it.familia).filter(f => f && f !== 'Sem Família'))].sort()], [fatItems]);
+  const vendedorOpts = useMemo(() => ["Todos", ...[...new Set(fatItems.map(it => it.vendedor).filter(v => v && v !== 'N/D' && v !== 'Sem Vendedor'))].sort()], [fatItems]);
   const filtroAtivo = fMes !== "Todos" || fVendedor !== "Todos" || fFamilia !== "Todos";
   const limparFiltros = () => { setFMes("Todos"); setFVendedor("Todos"); setFFamilia("Todos"); };
+
+  // ---- Pedidos tab memos ----
+  const pedFiltered = useMemo(() => {
+    return pedItems.filter(it => {
+      const mIdx = it.data ? parseInt(it.data.slice(5, 7)) - 1 : -1;
+      const mNome = mIdx >= 0 ? MESES_ABBR[mIdx] : null;
+      if (fPedMes !== "Todos" && mNome !== fPedMes) return false;
+      if (fPedVendedor !== "Todos" && it.vendedor !== fPedVendedor) return false;
+      if (fPedFamilia !== "Todos" && it.familia !== fPedFamilia) return false;
+      return true;
+    });
+  }, [pedItems, fPedMes, fPedVendedor, fPedFamilia]);
+
+  const pedT = useMemo(() => {
+    const totalValor = pedFiltered.reduce((s, it) => s + it.valor, 0);
+    const totalQtd = pedFiltered.reduce((s, it) => s + it.qtd, 0);
+    const numPedidos = new Set(pedFiltered.map(it => it.nCodPed).filter(Boolean)).size;
+    const numClientes = new Set(pedFiltered.map(it => it.cliente).filter(Boolean)).size;
+    const numProdutos = new Set(pedFiltered.map(it => it.produto).filter(Boolean)).size;
+    const ticketMedio = numPedidos > 0 ? totalValor / numPedidos : 0;
+    return { totalValor, totalQtd, numPedidos, numClientes, numProdutos, ticketMedio };
+  }, [pedFiltered]);
+
+  const pedPorMes = useMemo(() => {
+    const mMap = new Map();
+    for (const it of pedFiltered) {
+      if (!it.data) continue;
+      const mIdx = parseInt(it.data.slice(5, 7)) - 1;
+      if (mIdx < 0 || mIdx > 11) continue;
+      if (!mMap.has(mIdx)) mMap.set(mIdx, { name: MESES_ABBR[mIdx], value: 0, idx: mIdx });
+      mMap.get(mIdx).value += it.valor;
+    }
+    return [...mMap.values()].sort((a, b) => a.idx - b.idx);
+  }, [pedFiltered]);
+
+  const pedPorFamilia = useMemo(() => aggBy(pedFiltered, x => x.familia).slice(0, 10), [pedFiltered]);
+  const pedPorProduto = useMemo(() => aggBy(pedFiltered, x => x.produto).slice(0, 10).map(d => ({
+    name: d.name.length > 40 ? d.name.slice(0, 40) + '…' : d.name, value: d.value,
+  })), [pedFiltered]);
+  const pedPorCliente = useMemo(() => aggBy(pedFiltered, x => x.cliente).slice(0, 10), [pedFiltered]);
+  const pedPorVendedor = useMemo(() => aggBy(pedFiltered, x => x.vendedor).filter(v => v.name && v.name !== "N/D" && v.name !== "Sem Vendedor").slice(0, 10), [pedFiltered]);
+
+  const pedMesOpts = useMemo(() => {
+    const set = new Set(pedItems.map(it => {
+      if (!it.data) return null;
+      return MESES_ABBR[parseInt(it.data.slice(5, 7)) - 1] || null;
+    }).filter(Boolean));
+    return ["Todos", ...[...set]];
+  }, [pedItems]);
+  const pedFamiliaOpts = useMemo(() => ["Todos", ...[...new Set(pedItems.map(it => it.familia).filter(f => f && f !== 'Sem Família'))].sort()], [pedItems]);
+  const pedVendedorOpts = useMemo(() => ["Todos", ...[...new Set(pedItems.map(it => it.vendedor).filter(v => v && v !== 'N/D' && v !== 'Sem Vendedor'))].sort()], [pedItems]);
+  const pedFiltroAtivo = fPedMes !== "Todos" || fPedVendedor !== "Todos" || fPedFamilia !== "Todos";
+  const limparPedFiltros = () => { setFPedMes("Todos"); setFPedVendedor("Todos"); setFPedFamilia("Todos"); };
 
   return (
     <div className="page">
       <div className="page-title">
         <div>
           <h1>Faturamento por Produto</h1>
-          <div className="status-line">
-            {T.numNFs} NFs · {T.numProdutos} produtos · {T.numClientes} clientes · ano {T.anoRef}
-            {filtroAtivo && <> · <b style={{ color: "var(--cyan)" }}>filtrado</b></>}
-          </div>
+          {tab === 'xlsx' && hasFat && (
+            <div className="status-line">
+              {T.numNFs} NFs · {T.numProdutos} produtos · {T.numClientes} clientes · ano {T.anoRef}
+              {filtroAtivo && <> · <b style={{ color: "var(--cyan)" }}>filtrado</b></>}
+            </div>
+          )}
+          {tab === 'pedidos' && hasPed && (
+            <div className="status-line">
+              {pedT.numPedidos} pedidos · {pedT.numProdutos} produtos · {pedT.numClientes} clientes
+              {pedFiltroAtivo && <> · <b style={{ color: "var(--cyan)" }}>filtrado</b></>}
+            </div>
+          )}
         </div>
         <div className="actions">
-          {filtroAtivo && <button className="btn-ghost" onClick={limparFiltros}>Limpar filtros</button>}
+          {tab === 'xlsx' && filtroAtivo && <button className="btn-ghost" onClick={limparFiltros}>Limpar filtros</button>}
+          {tab === 'pedidos' && pedFiltroAtivo && <button className="btn-ghost" onClick={limparPedFiltros}>Limpar filtros</button>}
         </div>
       </div>
 
-      {/* ===== Header de filtros funcionais ===== */}
-      <div className="fat-filters">
-        <label className="fat-filter">
-          <span>Mês</span>
-          <select className="filter-select" value={fMes} onChange={e => setFMes(e.target.value)}>
-            {mesOpts.map(o => <option key={o}>{o}</option>)}
-          </select>
-        </label>
-        <label className="fat-filter">
-          <span>Vendedor</span>
-          <select className="filter-select" value={fVendedor} onChange={e => setFVendedor(e.target.value)}>
-            {vendedorOpts.map(o => <option key={o}>{o}</option>)}
-          </select>
-        </label>
-        <label className="fat-filter">
-          <span>Família</span>
-          <select className="filter-select" value={fFamilia} onChange={e => setFFamilia(e.target.value)}>
-            {familiaOpts.map(o => <option key={o}>{o}</option>)}
-          </select>
-        </label>
+      {/* ===== Tab nav ===== */}
+      <div className="seg" style={{ marginBottom: 16 }}>
+        <button className={tab === 'xlsx' ? 'active' : ''} onClick={() => setTab('xlsx')}>
+          Faturamento {hasFat && E.faturamento.fonte === 'api' ? '(API)' : '(XLSX)'}
+        </button>
+        <button className={tab === 'pedidos' ? 'active' : ''} onClick={() => setTab('pedidos')}>Pedidos Faturados (API)</button>
       </div>
 
-      {/* ===== Linha 1: Métricas Gerais (esquerda) + Vendas por Anúncio (direita) ===== */}
-      <div className="row fat-row-1">
-        <div className="card fat-metricas">
-          <div className="fat-metricas-title">MÉTRICAS GERAIS</div>
-          <div className="fat-metricas-grid">
-            <div className="fat-metric">
-              <div className="fat-metric-label">Vendas</div>
-              <div className="fat-metric-value">R$ {formatBR(T.totalValor)}</div>
+      {/* ===== XLSX tab ===== */}
+      {tab === 'xlsx' && (
+        !hasFat
+          ? <div className="card"><h2 className="card-title">Sem dados</h2><p>Rode <code>node build-data-extras.cjs</code> pra gerar data-extras.js.</p></div>
+          : <>
+            <div className="fat-filters">
+              <label className="fat-filter">
+                <span>Mês</span>
+                <select className="filter-select" value={fMes} onChange={e => setFMes(e.target.value)}>
+                  {mesOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
+              <label className="fat-filter">
+                <span>Vendedor</span>
+                <select className="filter-select" value={fVendedor} onChange={e => setFVendedor(e.target.value)}>
+                  {vendedorOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
+              <label className="fat-filter">
+                <span>Família</span>
+                <select className="filter-select" value={fFamilia} onChange={e => setFFamilia(e.target.value)}>
+                  {familiaOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
             </div>
-            <div className="fat-metric">
-              <div className="fat-metric-label">Quantidade vendida</div>
-              <div className="fat-metric-value">{formatBR(T.totalQtd)}</div>
-            </div>
-            <div className="fat-metric">
-              <div className="fat-metric-label">Ticket médio</div>
-              <div className="fat-metric-value">R$ {formatBR(T.ticketMedio)}</div>
-            </div>
-          </div>
-        </div>
-        <div className="card fat-vendas-anuncio">
-          <h2 className="card-title">VENDAS POR ANÚNCIO</h2>
-          <FatVerticalBars items={vendasPorAnuncio} height={260} />
-        </div>
-      </div>
 
-      {/* ===== Linha 2: Ranking Produto + Ranking Vendedor (esquerda 2 cards) | Matriz (direita) ===== */}
-      <div className="row fat-row-2">
-        <div className="fat-col-rankings">
-          <div className="card">
-            <h2 className="card-title">RANKING POR PRODUTO</h2>
-            <FatBarList items={topProdutos} />
-          </div>
-          <div className="card">
-            <h2 className="card-title">RANKING POR VENDEDOR</h2>
-            <FatBarList items={topVendedores} />
-          </div>
-        </div>
-        <div className="card fat-matriz">
-          <h2 className="card-title">ANÁLISE DE PRODUTOS POR ANÚNCIO</h2>
-          <div className="t-scroll" style={{ maxHeight: 420 }}>
-            <table className="t fat-matriz-tbl">
-              <thead>
-                <tr>
-                  <th>Produto</th>
-                  {matrizMeses.map(m => <th key={m} className="num">{m}</th>)}
-                  <th className="num">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {matrizProdutos.map((p, i) => (
-                  <tr key={i}>
-                    <td title={p.nome}>{p.nome.length > 28 ? p.nome.slice(0, 28) + "…" : p.nome}</td>
-                    {p.meses.map((v, j) => (
-                      <td key={j} className="num" style={{ color: v > 0 ? ORANGE : "var(--fg-3)" }}>
-                        {v > 0 ? formatBR(v, 0) : "—"}
-                      </td>
-                    ))}
-                    <td className="num" style={{ color: "var(--text)", fontWeight: 700 }}>{formatBR(p.total, 0)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+            <div className="row fat-row-1">
+              <div className="card fat-metricas">
+                <div className="fat-metricas-title">MÉTRICAS GERAIS</div>
+                <div className="fat-metricas-grid">
+                  <div className="fat-metric">
+                    <div className="fat-metric-label">Vendas</div>
+                    <div className="fat-metric-value">R$ {formatBR(T.totalValor)}</div>
+                  </div>
+                  <div className="fat-metric">
+                    <div className="fat-metric-label">Quantidade vendida</div>
+                    <div className="fat-metric-value">{formatBR(T.totalQtd)}</div>
+                  </div>
+                  <div className="fat-metric">
+                    <div className="fat-metric-label">Ticket médio</div>
+                    <div className="fat-metric-value">R$ {formatBR(T.ticketMedio)}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="card fat-vendas-anuncio">
+                <h2 className="card-title">VENDAS POR ANÚNCIO</h2>
+                <FatVerticalBars items={vendasPorAnuncio} height={260} />
+              </div>
+            </div>
+
+            <div className="row fat-row-2">
+              <div className="fat-col-rankings">
+                <div className="card">
+                  <h2 className="card-title">RANKING POR PRODUTO</h2>
+                  <FatBarList items={topProdutos} />
+                </div>
+                <div className="card">
+                  <h2 className="card-title">RANKING POR VENDEDOR</h2>
+                  <FatBarList items={topVendedores} />
+                </div>
+              </div>
+              <div className="card fat-matriz">
+                <h2 className="card-title">ANÁLISE DE PRODUTOS POR ANÚNCIO</h2>
+                <div className="t-scroll" style={{ maxHeight: 420 }}>
+                  <table className="t fat-matriz-tbl">
+                    <thead>
+                      <tr>
+                        <th>Produto</th>
+                        {matrizMeses.map(m => <th key={m} className="num">{m}</th>)}
+                        <th className="num">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {matrizProdutos.map((p, i) => (
+                        <tr key={i}>
+                          <td title={p.nome}>{p.nome.length > 28 ? p.nome.slice(0, 28) + "…" : p.nome}</td>
+                          {p.meses.map((v, j) => (
+                            <td key={j} className="num" style={{ color: v > 0 ? ORANGE : "var(--fg-3)" }}>
+                              {v > 0 ? formatBR(v, 0) : "—"}
+                            </td>
+                          ))}
+                          <td className="num" style={{ color: "var(--text)", fontWeight: 700 }}>{formatBR(p.total, 0)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </>
+      )}
+
+      {/* ===== Pedidos tab ===== */}
+      {tab === 'pedidos' && (
+        !hasPed
+          ? <div className="card"><h2 className="card-title">Sem dados de pedidos</h2><p>Execute o pull do Omie e rode <code>node build-data-extras.cjs</code> para gerar os dados de pedidos.</p></div>
+          : <>
+            <div className="fat-filters">
+              <label className="fat-filter">
+                <span>Mês</span>
+                <select className="filter-select" value={fPedMes} onChange={e => setFPedMes(e.target.value)}>
+                  {pedMesOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
+              <label className="fat-filter">
+                <span>Vendedor</span>
+                <select className="filter-select" value={fPedVendedor} onChange={e => setFPedVendedor(e.target.value)}>
+                  {pedVendedorOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
+              <label className="fat-filter">
+                <span>Família</span>
+                <select className="filter-select" value={fPedFamilia} onChange={e => setFPedFamilia(e.target.value)}>
+                  {pedFamiliaOpts.map(o => <option key={o}>{o}</option>)}
+                </select>
+              </label>
+            </div>
+
+            <div className="kpi-row">
+              <MiniKpi tone="green" label="Faturado (pedidos)" value={formatBR(pedT.totalValor)} hint={`${pedT.numPedidos} pedidos`} />
+              <MiniKpi tone="cyan" label="Ticket médio" value={formatBR(pedT.ticketMedio)} hint="por pedido" />
+              <MiniKpi tone="" label="Qtd vendida" value={formatBR(pedT.totalQtd, 0)} nonMonetary hint={`${pedT.numProdutos} produtos`} />
+              <MiniKpi tone="" label="Clientes" value={String(pedT.numClientes)} nonMonetary hint="com pedidos" />
+            </div>
+
+            <div className="card">
+              <h2 className="card-title">FATURAMENTO MENSAL (PEDIDOS)</h2>
+              <FatVerticalBars items={pedPorMes} height={240} />
+            </div>
+
+            <div className="row" style={{ gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)" }}>
+              <div className="fat-col-rankings">
+                <div className="card">
+                  <h2 className="card-title">POR FAMÍLIA</h2>
+                  <FatBarList items={pedPorFamilia} />
+                </div>
+                <div className="card">
+                  <h2 className="card-title">POR PRODUTO</h2>
+                  <FatBarList items={pedPorProduto} />
+                </div>
+              </div>
+              <div className="fat-col-rankings">
+                <div className="card">
+                  <h2 className="card-title">POR CLIENTE</h2>
+                  <FatBarList items={pedPorCliente} />
+                </div>
+                <div className="card">
+                  <h2 className="card-title">POR VENDEDOR</h2>
+                  <FatBarList items={pedPorVendedor} />
+                </div>
+              </div>
+            </div>
+          </>
+      )}
     </div>
   );
 };
@@ -1119,4 +1248,192 @@ const PageValuation = () => {
   );
 };
 
-Object.assign(window, { PageFaturamentoProduto, PageCurvaABC, PageMarketing, PageValuation });
+// ============================================================
+// PageCMV — tela CMV / Pedidos de Venda (reproduz o Power BI da Limpuz)
+// Vendas = pedidos faturados (window.BI_CMV); Compra de Mercadoria = despesas
+// na categoria "5.1.1 COMPRA DE MERCADORIA"; CMV% = compra / vendas.
+// ============================================================
+const CMV_AMARELO = "#facc15";
+const CMV_VERMELHO = "#ef4444";
+const CMV_LARANJA = "#fb923c";
+const MESES_FULL_CMV = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+const fmtMil = (v) => (Math.abs(v) >= 1000 ? "R$" + formatBR(v / 1000, 2) + " Mil" : "R$" + formatBR(v || 0, 0));
+
+// Combo: barras agrupadas Vendas (amarelo) x Compra (vermelho) + dot Contagem de clientes
+const CmvCombo = ({ vendas, compras, contagem, height = 280, onBarClick, activeIdx = -1 }) => {
+  const idxs = [];
+  for (let i = 0; i < 12; i++) if ((vendas[i] || 0) > 0 || (compras[i] || 0) > 0) idxs.push(i);
+  if (!idxs.length) return <div className="status-line">Sem dados.</div>;
+  const max = Math.max(1, ...idxs.map(i => Math.max(vendas[i] || 0, compras[i] || 0)));
+  const maxC = Math.max(1, ...idxs.map(i => contagem[i] || 0));
+  const hasActive = activeIdx >= 0;
+  return (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: 14, height, padding: "26px 4px 4px", overflowX: "auto" }}>
+      {idxs.map(i => {
+        const dimmed = hasActive && i !== activeIdx;
+        const active = hasActive && i === activeIdx;
+        return (
+        <div key={i} onClick={onBarClick ? () => onBarClick(i) : undefined}
+          style={{ flex: "1 0 64px", display: "flex", flexDirection: "column", alignItems: "center", height: "100%",
+            cursor: onBarClick ? "pointer" : undefined, opacity: dimmed ? 0.3 : 1, transition: "opacity .2s",
+            borderBottom: active ? "2px solid var(--cyan)" : "2px solid transparent" }}>
+          <div style={{ position: "relative", flex: 1, width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 5 }}>
+            <div title={"Clientes: " + (contagem[i] || 0)}
+              style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: `${((contagem[i] || 0) / maxC) * 92}%`, width: 9, height: 9, borderRadius: "50%", background: CMV_LARANJA, border: "2px solid #11151c", zIndex: 2 }} />
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", height: "100%" }}>
+              <span style={{ fontSize: 9.5, color: CMV_AMARELO, marginBottom: 3, whiteSpace: "nowrap" }}>{fmtMil(vendas[i] || 0)}</span>
+              <div style={{ width: 20, height: `${((vendas[i] || 0) / max) * 100}%`, minHeight: (vendas[i] || 0) > 0 ? 2 : 0, background: CMV_AMARELO, borderRadius: "3px 3px 0 0" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", height: "100%" }}>
+              <span style={{ fontSize: 9.5, color: CMV_VERMELHO, marginBottom: 3, whiteSpace: "nowrap" }}>{fmtMil(compras[i] || 0)}</span>
+              <div style={{ width: 20, height: `${((compras[i] || 0) / max) * 100}%`, minHeight: (compras[i] || 0) > 0 ? 2 : 0, background: CMV_VERMELHO, borderRadius: "3px 3px 0 0" }} />
+            </div>
+          </div>
+          <span style={{ fontSize: 11, color: dimmed ? "var(--fg-4)" : "var(--fg-3)", marginTop: 6 }}>{MESES_FULL_CMV[i]}</span>
+        </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const PageCMV = ({ year }) => {
+  const CMV = (typeof window !== "undefined" && window.BI_CMV) || { anos: [], anoRef: null, porAno: {} };
+  const yr = (CMV.porAno && CMV.porAno[year]) ? year : CMV.anoRef;
+  const data = (CMV.porAno && CMV.porAno[yr]) || { itens: [], compraMes: Array(12).fill(0), categorias: [] };
+
+  const [fCat, setFCat] = useState("Todos");
+  const [fMes, setFMes] = useState(-1); // -1 = todos os meses
+  const catOpts = useMemo(() => ["Todos", ...(data.categorias || [])], [data.categorias]);
+  const itens = useMemo(() => (data.itens || []).filter(r =>
+    (fCat === "Todos" || r[1] === fCat) && (fMes < 0 || r[0] === fMes)
+  ), [data.itens, fCat, fMes]);
+  const handleBarClick = (i) => setFMes(prev => prev === i ? -1 : i);
+
+  const agg = useMemo(() => {
+    const porMes = Array(12).fill(0);
+    const cliMes = Array.from({ length: 12 }, () => new Set());
+    const catMap = new Map(), cliMap = new Map();
+    const pedSet = new Set();
+    let total = 0;
+    for (const r of itens) {
+      const mes = r[0], categoria = r[1], cliF = r[2], cliR = r[3], valor = r[4], nCodPed = r[5];
+      total += valor;
+      if (mes >= 0 && mes < 12) { porMes[mes] += valor; if (cliF) cliMes[mes].add(cliF); }
+      catMap.set(categoria, (catMap.get(categoria) || 0) + valor);
+      const ck = cliR || cliF;
+      if (ck) cliMap.set(ck, (cliMap.get(ck) || 0) + valor);
+      if (nCodPed) pedSet.add(nCodPed);
+    }
+    const numPedidos = pedSet.size;
+    const toArr = (mp) => [...mp.entries()].map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+    return {
+      total, numPedidos, numItens: itens.length,
+      // Ticket médio = receita / nº de itens faturados (mesma definição do Power BI do cliente).
+      ticketMedio: itens.length > 0 ? total / itens.length : 0,
+      porMes, contagemClienteMes: cliMes.map(s => s.size),
+      porCategoria: toArr(catMap), porCliente: toArr(cliMap).slice(0, 12),
+    };
+  }, [itens]);
+
+  const compraMes = data.compraMes || Array(12).fill(0);
+  const compraTotal = fMes >= 0 ? (compraMes[fMes] || 0) : compraMes.reduce((s, x) => s + x, 0);
+  const cmvPct = agg.total > 0 ? (compraTotal / agg.total) * 100 : 0;
+
+  const extrato = useMemo(() => itens.slice().sort((a, b) => {
+    const pa = (a[6] || "").split("/").reverse().join(""), pb = (b[6] || "").split("/").reverse().join("");
+    return pb.localeCompare(pa);
+  }).slice(0, 200), [itens]);
+
+  if (!itens.length && !compraTotal) {
+    return (
+      <div className="page">
+        <div className="page-title"><h1>CMV · Pedidos de Venda</h1></div>
+        <div className="card"><h2 className="card-title">Sem dados</h2>
+          <p>Rode <code>node fetch-pedidos.cjs</code> e <code>node build-data.cjs</code> pra gerar os pedidos faturados.</p></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="page">
+      <div className="page-title">
+        <div>
+          <h1>CMV · Pedidos de Venda</h1>
+          <div className="status-line">
+            {agg.numPedidos} pedidos · {agg.numItens} itens · ano {yr} · Situação Faturado
+            {fMes >= 0 && <> · <b style={{ color: "var(--cyan)", cursor: "pointer" }} onClick={() => setFMes(-1)}>{MESES_FULL_CMV[fMes]} ✕</b></>}
+            {fCat !== "Todos" && <> · <b style={{ color: "var(--cyan)" }}>{fCat}</b></>}
+          </div>
+        </div>
+        <div className="actions">
+          <label className="fat-filter">
+            <span>Categoria</span>
+            <select className="filter-select" value={fCat} onChange={e => setFCat(e.target.value)}>
+              {catOpts.map(o => <option key={o}>{o}</option>)}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      {/* Indicadores principais */}
+      <div className="kpi-row" style={{ marginBottom: 16 }}>
+        <MiniKpi label="Receita total" value={formatBR(agg.total)} />
+        <MiniKpi label="Ticket Médio" value={formatBR(agg.ticketMedio)} />
+        <MiniKpi label="CMV %" value={formatBR(cmvPct) + "%"} nonMonetary tone="amber" hint={"Compra de mercadoria R$ " + formatBR(compraTotal)} />
+      </div>
+
+      {/* Vendas x Compra de Mercadoria */}
+      <div className="card" style={{ marginBottom: 16 }}>
+        <div className="card-title-row">
+          <h2 className="card-title">Vendas x Compra de Mercadoria</h2>
+          <div style={{ display: "flex", gap: 16, fontSize: 12 }}>
+            <span style={{ color: CMV_AMARELO }}>● Vendas</span>
+            <span style={{ color: CMV_VERMELHO }}>● Compra de Mercadoria</span>
+            <span style={{ color: CMV_LARANJA }}>● Contagem de Clientes</span>
+          </div>
+        </div>
+        <CmvCombo vendas={agg.porMes} compras={compraMes} contagem={agg.contagemClienteMes} onBarClick={handleBarClick} activeIdx={fMes} />
+      </div>
+
+      <div className="row">
+        <div className="card">
+          <h2 className="card-title">Vendas por Categoria</h2>
+          <FatBarList items={agg.porCategoria.slice(0, 12)} color={CMV_AMARELO} formatter={(v) => "R$ " + formatBR(v)} />
+        </div>
+        <div className="card">
+          <h2 className="card-title">Receita por Cliente</h2>
+          <FatBarList items={agg.porCliente} color={CMV_AMARELO} formatter={(v) => "R$ " + formatBR(v)} />
+        </div>
+      </div>
+
+      {/* Extrato de vendas */}
+      <div className="card" style={{ marginTop: 16 }}>
+        <h2 className="card-title">Extrato de Vendas</h2>
+        <div className="t-scroll">
+          <table className="t">
+            <thead>
+              <tr><th>Data de Emissão</th><th>Categoria</th><th>Cliente</th><th className="num">Soma de Valor</th></tr>
+            </thead>
+            <tbody>
+              {extrato.map((r, i) => (
+                <tr key={i}>
+                  <td style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{r[6]}</td>
+                  <td>{r[1]}</td>
+                  <td>{r[2]}</td>
+                  <td className="num">R$ {formatBR(r[4])}</td>
+                </tr>
+              ))}
+              <tr className="total">
+                <td colSpan="3">Total{(fCat !== "Todos" || fMes >= 0) ? " (filtrado)" : ""}</td>
+                <td className="num">R$ {formatBR(agg.total)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+Object.assign(window, { PageFaturamentoProduto, PageCurvaABC, PageMarketing, PageValuation, PageCMV });

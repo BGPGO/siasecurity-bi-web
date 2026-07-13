@@ -50,8 +50,10 @@ const Sidebar = ({ active, onSelect, open }) => {
     { id: "diary", icon: "diary", label: "Diário", badge: "EM BREVE" },
   ];
   const others = [
+    { id: "fluxo_projetado", icon: "flow", label: "Fluxo Projetado" },
     { id: "indicators", icon: "chart", label: "Indicadores" },
     { id: "faturamento_produto", icon: "money", label: "Faturamento" },
+    { id: "cmv", icon: "cash", label: "CMV" },
     { id: "curva_abc", icon: "chart", label: "Curva ABC" },
     { id: "marketing", icon: "invest", label: "Marketing ADS" },
     { id: "hierarquia", icon: "chart", label: "Hierarquia ADS" },
@@ -114,7 +116,9 @@ const PAGE_TITLES = {
   tesouraria: "Tesouraria",
   comparativo: "Comparativo",
   relatorio: "Relatório IA",
+  fluxo_projetado: "Fluxo Projetado",
   faturamento_produto: "Faturamento por Produto",
+  cmv: "CMV · Pedidos de Venda",
   curva_abc: "Curva ABC de Produtos",
   marketing: "Marketing ADS",
   valuation: "Valuation",
@@ -153,6 +157,13 @@ const StatusFilterSeg = ({ value, onChange }) => (
   </div>
 );
 
+const InvestimentoToggle = ({ value, onChange }) => (
+  <div className="seg status-filter-seg" title="Filtro de investimento">
+    <button className={!value ? "active" : ""} onClick={() => onChange(false)}>Com Invest.</button>
+    <button className={value ? "active" : ""} onClick={() => onChange(true)}>Sem Invest.</button>
+  </div>
+);
+
 const YearSelect = ({ value, onChange, available }) => {
   const years = available && available.length ? available : [value];
   return (
@@ -186,100 +197,94 @@ const MonthSelect = ({ value, onChange }) => (
   </select>
 );
 
-// MultiMonthSelect: dropdown com checkboxes pra selecionar 1+ meses.
-// value = array de números (1-12); array vazio = "Ano completo" (= todos).
-const MONTH_LABELS_SHORT = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-const MultiMonthSelect = ({ value, onChange }) => {
-  const months = Array.isArray(value) ? value : (value ? [value] : []);
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  useEffect(() => {
-    if (!open) return;
-    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener('mousedown', onDoc);
-    return () => document.removeEventListener('mousedown', onDoc);
-  }, [open]);
-  const toggle = (m) => {
-    const set = new Set(months);
-    if (set.has(m)) set.delete(m); else set.add(m);
-    onChange([...set].sort((a, b) => a - b));
-  };
-  const selectAll = () => onChange([]);  // [] == "Ano completo"
-  const clear = () => onChange([]);
-  const sorted = [...months].sort((a, b) => a - b);
-  let label;
-  if (sorted.length === 0) label = "Ano completo";
-  else if (sorted.length <= 3) label = sorted.map(m => MONTH_LABELS_SHORT[m - 1]).join(", ");
-  else label = sorted.length + " meses";
+const WEEK_RANGES = [
+  { v: 1, label: 'Sem. 1 (1–7)' },
+  { v: 2, label: 'Sem. 2 (8–14)' },
+  { v: 3, label: 'Sem. 3 (15–21)' },
+  { v: 4, label: 'Sem. 4 (22–28)' },
+  { v: 5, label: 'Sem. 5 (29–31)' },
+];
+
+const DayFilterGroup = ({ dayMode, setDayMode, day, setDay, dayFrom, setDayFrom, dayTo, setDayTo, week, setWeek }) => {
+  const dayNums = Array.from({ length: 31 }, (_, i) => i + 1);
+  const modes = ['dia', 'intervalo', 'semana'];
   return (
-    <div className="multi-month-select" ref={ref} style={{ position: 'relative' }}>
-      <button
-        type="button"
-        className="header-year multi-month-trigger"
-        onClick={() => setOpen(o => !o)}
-        title="Meses (selecione vários — vazio = Ano completo)"
-        style={{ minWidth: 130, textAlign: 'left', display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', gap: 6, cursor: 'pointer' }}
-      >
-        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
-        <span style={{ opacity: 0.6, fontSize: 10 }}>▾</span>
-      </button>
-      {open && (
-        <div className="multi-month-pop" style={{
-          position: 'absolute', top: 'calc(100% + 4px)', right: 0, zIndex: 50,
-          background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8,
-          padding: 8, minWidth: 200, boxShadow: '0 8px 24px rgba(0,0,0,0.25)'
-        }}>
-          <div style={{ display: 'flex', gap: 6, marginBottom: 6, justifyContent: 'space-between' }}>
-            <button type="button" onClick={selectAll} className="btn-ghost" style={{ fontSize: 11, padding: '4px 8px' }}>Ano completo</button>
-            <button type="button" onClick={clear} className="btn-ghost" style={{ fontSize: 11, padding: '4px 8px' }} disabled={sorted.length === 0}>Limpar</button>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
-            {MONTH_LABELS_SHORT.map((lbl, i) => {
-              const m = i + 1;
-              const active = months.includes(m);
-              return (
-                <label key={m} style={{
-                  display: 'flex', alignItems: 'center', gap: 4, padding: '4px 6px',
-                  borderRadius: 4, cursor: 'pointer', fontSize: 12,
-                  background: active ? 'var(--surface-2)' : 'transparent',
-                  color: active ? 'var(--cyan)' : 'inherit',
-                  border: '1px solid ' + (active ? 'var(--cyan)' : 'transparent'),
-                }}>
-                  <input type="checkbox" checked={active} onChange={() => toggle(m)} style={{ accentColor: 'var(--cyan)' }} />
-                  {lbl}
-                </label>
-              );
-            })}
-          </div>
-        </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+      <div style={{ display: 'flex' }}>
+        {modes.map((m, i) => (
+          <button key={m} onClick={() => setDayMode(m)} style={{
+            padding: '2px 7px', fontSize: 11, lineHeight: '16px', cursor: 'pointer',
+            background: dayMode === m ? '#4f86c6' : '#222',
+            color: dayMode === m ? '#fff' : '#888',
+            border: '1px solid #444',
+            borderRadius: i === 0 ? '4px 0 0 4px' : i === 2 ? '0 4px 4px 0' : '0',
+            borderRight: i < 2 ? 'none' : undefined,
+          }}>
+            {m === 'dia' ? 'Dia' : m === 'intervalo' ? 'Intervalo' : 'Semana'}
+          </button>
+        ))}
+      </div>
+      {dayMode === 'dia' && (
+        <select className="header-year" value={day || 0} onChange={e => setDay(Number(e.target.value))}>
+          <option value={0}>Todo mês</option>
+          {dayNums.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+      )}
+      {dayMode === 'intervalo' && (<>
+        <select className="header-year" value={dayFrom || 0} onChange={e => setDayFrom(Number(e.target.value))}>
+          <option value={0}>De</option>
+          {dayNums.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+        <span style={{ color: '#888', fontSize: 12, padding: '0 2px' }}>–</span>
+        <select className="header-year" value={dayTo || 0} onChange={e => setDayTo(Number(e.target.value))}>
+          <option value={0}>Até</option>
+          {dayNums.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+      </>)}
+      {dayMode === 'semana' && (
+        <select className="header-year" value={week || 0} onChange={e => setWeek(Number(e.target.value))}>
+          <option value={0}>Toda semana</option>
+          {WEEK_RANGES.map(w => <option key={w.v} value={w.v}>{w.label}</option>)}
+        </select>
       )}
     </div>
   );
 };
 
 // BiExportButton: modal com checkboxes pra exportar telas selecionadas como PDF
-const BI_EXPORT_PAGES = [
-  { id: "overview", label: "01 Visão Geral" },
-  { id: "receita", label: "02 Receita" },
-  { id: "despesa", label: "03 Despesa" },
-  { id: "fluxo", label: "04 Fluxo de Caixa" },
-  { id: "tesouraria", label: "05 Tesouraria" },
-  { id: "comparativo", label: "06 Comparativo" },
-  { id: "relatorio", label: "07 Relatório IA" },
-  { id: "valuation", label: "08 Valuation" },
-  { id: "indicators", label: "09 Indicadores" },
-  { id: "faturamento_produto", label: "10 Faturamento por Produto" },
-  { id: "curva_abc", label: "11 Curva ABC" },
-  { id: "marketing", label: "12 Marketing ADS" },
-  { id: "hierarquia", label: "13 Hierarquia ADS" },
-  { id: "detalhado", label: "14 Detalhado" },
-  { id: "profunda_cliente", label: "15 Profunda Cliente" },
-  { id: "crm", label: "16 CRM" },
+// Filtra automaticamente para mostrar apenas telas ativas (não hidden/upsell)
+const BI_EXPORT_ALL_PAGES = [
+  { id: "overview", label: "Visão Geral" },
+  { id: "receita", label: "Receita" },
+  { id: "despesa", label: "Despesa" },
+  { id: "fluxo", label: "Fluxo de Caixa" },
+  { id: "tesouraria", label: "Tesouraria" },
+  { id: "comparativo", label: "Comparativo" },
+  { id: "relatorio", label: "Relatório IA" },
+  { id: "valuation", label: "Valuation" },
+  { id: "indicators", label: "Indicadores" },
+  { id: "faturamento_produto", label: "Faturamento por Produto" },
+  { id: "cmv", label: "CMV" },
+  { id: "curva_abc", label: "Curva ABC" },
+  { id: "marketing", label: "Marketing ADS" },
+  { id: "hierarquia", label: "Hierarquia ADS" },
+  { id: "detalhado", label: "Detalhado" },
+  { id: "profunda_cliente", label: "Profunda Cliente" },
+  { id: "crm", label: "CRM" },
 ];
+const getActiveExportPages = () => {
+  const mode = window.BI_PAGE_MODE || {};
+  const active = BI_EXPORT_ALL_PAGES.filter(p => {
+    const m = mode[p.id];
+    return !m || m === 'active';
+  });
+  return active.map((p, i) => ({ ...p, label: `${String(i + 1).padStart(2, '0')} ${p.label}` }));
+};
 
 const BiExportButton = () => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(() => new Set(BI_EXPORT_PAGES.map(p => p.id)));
+  const pages = useMemo(() => getActiveExportPages(), []);
+  const [selected, setSelected] = useState(() => new Set(pages.map(p => p.id)));
   const toggle = (id) => {
     setSelected(s => {
       const ns = new Set(s);
@@ -289,7 +294,7 @@ const BiExportButton = () => {
   };
   const submit = () => {
     if (selected.size === 0) return;
-    const ordered = BI_EXPORT_PAGES.filter(p => selected.has(p.id)).map(p => p.id);
+    const ordered = pages.filter(p => selected.has(p.id)).map(p => p.id);
     if (window.startBiExport) window.startBiExport(ordered);
     setOpen(false);
   };
@@ -306,7 +311,7 @@ const BiExportButton = () => {
               Selecione as telas para incluir no PDF. Cada tela vira uma página A4 com o tema escuro mantido.
             </p>
             <div className="bi-export-grid">
-              {BI_EXPORT_PAGES.map(p => (
+              {pages.map(p => (
                 <label key={p.id} className="bi-export-row">
                   <input
                     type="checkbox"
@@ -319,7 +324,7 @@ const BiExportButton = () => {
             </div>
             <div className="bi-export-actions">
               <div style={{ display: "flex", gap: 8 }}>
-                <button className="btn-ghost" onClick={() => setSelected(new Set(BI_EXPORT_PAGES.map(p => p.id)))}>Todas</button>
+                <button className="btn-ghost" onClick={() => setSelected(new Set(pages.map(p => p.id)))}>Todas</button>
                 <button className="btn-ghost" onClick={() => setSelected(new Set())}>Nenhuma</button>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
@@ -336,32 +341,63 @@ const BiExportButton = () => {
   );
 };
 
-// Banner que aparece quando o filtro "A pagar/receber" está ativo mas
-// não há lançamentos abertos. Comum em clientes com `realizado_se_vencido: true`
-// que não cadastram parcelas futuras no fin40 — todos os títulos vencem antes
-// de hoje e viram realizado.
-const StatusEmptyHint = ({ statusFilter, bit }) => {
-  if (statusFilter !== 'a_pagar_receber') return null;
-  if (!bit) return null;
-  const empty = (bit.TOTAL_RECEITA || 0) === 0 && (bit.TOTAL_DESPESA || 0) === 0;
-  if (!empty) return null;
-  const hoje = new Date().toLocaleDateString('pt-BR');
+// MultiSelectFilter: dropdown com checkboxes para filtro multiseleção
+const MultiSelectFilter = ({ label, options, selected, onChange }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const count = selected.length;
+  const allSelected = count === 0;
+
+  useEffect(() => {
+    if (!open) return;
+    const onClickOut = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", onClickOut);
+    return () => document.removeEventListener("mousedown", onClickOut);
+  }, [open]);
+
+  const toggle = (val) => {
+    if (selected.includes(val)) onChange(selected.filter(v => v !== val));
+    else onChange([...selected, val]);
+  };
+
   return (
-    <div className="card" style={{ background: 'rgba(34, 211, 238, 0.06)', borderLeft: '3px solid var(--cyan)', padding: 14, marginBottom: 16, display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-      <span style={{ fontSize: 20, lineHeight: 1 }}>ℹ️</span>
-      <div style={{ flex: 1 }}>
-        <strong style={{ color: 'var(--cyan)' }}>Nenhum lançamento a pagar/receber no período</strong>
-        <p style={{ margin: '4px 0 0', color: 'var(--fg-2)', fontSize: 13, lineHeight: 1.5 }}>
-          Todos os títulos têm data de vencimento até hoje ({hoje}) e foram classificados como <b>Realizados</b> por configuração do cliente. Para ver parcelas futuras, o operador precisa cadastrar lançamentos com vencimento posterior no fin40.
-        </p>
-      </div>
+    <div className="multi-select-filter" ref={ref} style={{ position: "relative" }}>
+      <button
+        className={`btn-ghost hd-filter-btn ${count > 0 ? "active" : ""}`}
+        onClick={() => setOpen(o => !o)}
+        style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, padding: "4px 10px", whiteSpace: "nowrap" }}
+      >
+        <Icon name="filter" style={{ width: 14, height: 14 }} />
+        <span>{label}</span>
+        {count > 0 && <span className="multi-select-badge">{count}</span>}
+      </button>
+      {open && (
+        <div className="multi-select-dropdown" style={{
+          position: "absolute", top: "100%", right: 0, zIndex: 999,
+          background: "var(--surface)", border: "1px solid var(--border)",
+          borderRadius: 8, padding: "8px 0", marginTop: 4, minWidth: 220, maxHeight: 320,
+          overflowY: "auto", boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+        }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 14px", cursor: "pointer", fontSize: 12, fontWeight: 600, color: "var(--cyan)", borderBottom: "1px solid var(--border)" }}>
+            <input type="checkbox" checked={allSelected} onChange={() => onChange([])} />
+            <span>Todos</span>
+          </label>
+          {options.map(opt => (
+            <label key={opt} style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 14px", cursor: "pointer", fontSize: 12, color: "var(--text)" }}>
+              <input type="checkbox" checked={selected.includes(opt)} onChange={() => toggle(opt)} />
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{opt}</span>
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-// Header: breadcrumb + YearSelect + MultiMonthSelect + StatusFilter
-// months = array de meses 1-12 (vazio = ano completo). Retrocompat: aceita number.
-const Header = ({ page, onToggleSidebar, statusFilter, setStatusFilter, year, setYear, months, setMonths }) => {
+// Header: breadcrumb + YearSelect + MonthSelect + StatusFilter + MultiSelectFilters
+const Header = ({ page, onToggleSidebar, statusFilter, setStatusFilter, year, setYear, month, setMonth, dayMode, setDayMode, day, setDay, dayFrom, setDayFrom, dayTo, setDayTo, week, setWeek, semInvestimento, setSemInvestimento, filterCentroCusto, setFilterCentroCusto, filterCategoria, setFilterCategoria }) => {
+  const naturezas = useMemo(() => window.ALL_NATUREZAS || [], []);
+  const categorias = useMemo(() => window.ALL_CATEGORIAS || [], []);
   return (
     <header className="header">
       <button className="hd-icon-btn hd-menu-btn" title="Menu" onClick={onToggleSidebar}><Icon name="menu" /></button>
@@ -373,8 +409,16 @@ const Header = ({ page, onToggleSidebar, statusFilter, setStatusFilter, year, se
         <b>{PAGE_TITLES[page] || "Visão Geral"}</b>
       </div>
       <div style={{ flex: 1 }} />
+      {setFilterCentroCusto && naturezas.length > 0 && (
+        <MultiSelectFilter label="Natureza" options={naturezas} selected={filterCentroCusto || []} onChange={setFilterCentroCusto} />
+      )}
+      {setFilterCategoria && categorias.length > 0 && (
+        <MultiSelectFilter label="Categoria" options={categorias} selected={filterCategoria || []} onChange={setFilterCategoria} />
+      )}
       {setYear && <YearSelect value={year} onChange={setYear} available={window.AVAILABLE_YEARS} />}
-      {setMonths && <MultiMonthSelect value={months} onChange={setMonths} />}
+      {setMonth && <MonthSelect value={month} onChange={setMonth} />}
+      {setDayMode && month > 0 && <DayFilterGroup dayMode={dayMode} setDayMode={setDayMode} day={day} setDay={setDay} dayFrom={dayFrom} setDayFrom={setDayFrom} dayTo={dayTo} setDayTo={setDayTo} week={week} setWeek={setWeek} />}
+      {/* Toggle investimento removido */}
       {setStatusFilter && <StatusFilterSeg value={statusFilter} onChange={setStatusFilter} />}
       <BiExportButton />
     </header>
@@ -391,7 +435,11 @@ const MonthlyBars = ({ data, height = 230, type = "both", showLabels = true, onB
     <div style={{ position: "relative" }}>
       <div className="vbar-axis" style={{ height: height - 24 }}>
         {grids.map((g, i) => (<div key={i} className="grid" style={{ bottom: `${(g / max) * 100}%` }} />))}
-        {grids.map((g, i) => (<div key={"l"+i} className="glabel" style={{ bottom: `${(g / max) * 100}%` }}>{window.BIT.fmtK(g)}</div>))}
+        {grids.map((g, i) => {
+          const abs = Math.abs(g);
+          const lbl = abs >= 1e6 ? `${(abs/1e6).toFixed(1).replace('.',',')}M` : abs >= 1e3 ? `${(abs/1e3).toFixed(0)}K` : `${abs.toFixed(0)}`;
+          return <div key={"l"+i} className="glabel" style={{ bottom: `${(g / max) * 100}%` }}>{lbl}</div>;
+        })}
       </div>
       <div className="vbar-chart" style={{ height }}>
         {data.map((d, i) => {
@@ -778,18 +826,9 @@ const DivergingBars = ({ values, labels }) => {
 
 // KPI Tile (big numbers + sparkline). `tone` selects gradient: green / red / cyan / amber.
 // `nonMonetary` hides the R$ prefix (for counts: clients, suppliers, etc).
-const KpiTile = ({ label, value, unit, deltaPct, deltaDir, sparkValues, sparkColor, tone, nonMonetary, onClick, title, expanded }) => {
-  const clickable = typeof onClick === "function";
+const KpiTile = ({ label, value, unit, deltaPct, deltaDir, sparkValues, sparkColor, tone, nonMonetary }) => {
   return (
-    <div
-      className={`kpi-tile ${tone || ""} ${clickable ? "kpi-tile-clickable" : ""}`}
-      onClick={clickable ? onClick : undefined}
-      title={title}
-      style={clickable ? { cursor: "pointer", userSelect: "none", position: "relative" } : undefined}
-    >
-      {clickable && (
-        <span className="kpi-expand-hint" aria-hidden="true">{expanded ? "−" : "+"}</span>
-      )}
+    <div className={`kpi-tile ${tone || ""}`}>
       <div>
         <div className="kpi-label">{label}</div>
         <div className="kpi-value">
@@ -811,52 +850,6 @@ const KpiTile = ({ label, value, unit, deltaPct, deltaDir, sparkValues, sparkCol
       )}
     </div>
   );
-};
-
-// useKpiFormat — hook compartilhado pras Pages (Receita/Despesa/Tesouraria/etc).
-// Click no tile alterna entre formato detalhado (R$ X.XXX,XX, DEFAULT) e compacto (K/M).
-// Estado persiste em localStorage por pageId. Mostra tooltip on hover + indicador +/-.
-// Padrão BGP: começa expandido (mais claro), user pode compactar se quiser escaneio rápido.
-const useKpiFormat = (pageId) => {
-  const key = `bi.kpi.detailed.${pageId || 'default'}`;
-  const [detailed, setDetailed] = React.useState(() => {
-    // Default: expandido (detailed=true). Só compacta se user explicitamente salvou '0'.
-    try {
-      const saved = localStorage.getItem(key);
-      if (saved === '0') return false;
-      return true;
-    } catch (e) { return true; }
-  });
-  const toggle = () => {
-    setDetailed(d => {
-      const next = !d;
-      try { localStorage.setItem(key, next ? '1' : '0'); } catch (e) {}
-      return next;
-    });
-  };
-  // Formata valor pra detalhado (default) ou K/M (compacto)
-  const fmtVal = (n) => {
-    if (n == null || isNaN(n)) return { value: "0", unit: "" };
-    if (detailed) {
-      const abs = Math.abs(n);
-      const sign = n < 0 ? "-" : "";
-      const parts = abs.toFixed(2).split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      return { value: `${sign}${parts.join(",")}`, unit: "" };
-    }
-    const abs = Math.abs(n);
-    const sign = n < 0 ? "-" : "";
-    if (abs >= 1e6) return { value: `${sign}${(abs / 1e6).toFixed(2).replace(".", ",")}`, unit: "M" };
-    if (abs >= 1e3) return { value: `${sign}${(abs / 1e3).toFixed(0)}`, unit: "K" };
-    return { value: `${sign}${abs.toFixed(0)}`, unit: "" };
-  };
-  return {
-    detailed,
-    toggle,
-    fmtVal,
-    tooltipHint: detailed ? "Clique para compactar (K/M)" : "Clique para ver valor completo",
-    expandIcon: detailed ? "−" : "+",
-  };
 };
 
 // Default filter state — used for active-count + clear-all
@@ -1106,6 +1099,6 @@ Object.assign(window, {
   Icon, Sidebar, Header, Filters, FiltersDrawer, InlineFilterBar, ExportButton, DEFAULT_FILTERS,
   MonthlyBars, SingleBars, DailyBars, StackedArea, TrendChart, MultiLine,
   BarList, BarListLine, BarListLegend, DivergingBars, Donut, Spark, KpiTile,
-  PAGE_TITLES, StatusFilterSeg, STATUS_FILTERS,
+  PAGE_TITLES, StatusFilterSeg, STATUS_FILTERS, InvestimentoToggle,
   DrilldownBadge, applyDrilldown, extratoMonthKey,
 });

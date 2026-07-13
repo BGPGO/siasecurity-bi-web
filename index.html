@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>BGP GO BI — Cliente</title>
-  <link rel="icon" type="image/png" href="assets/bgp-logo.png" />
+  <title>Gsia Financeiro · BI Financeiro — BGP GO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,9 +23,8 @@
     // como fallback quando o report-{year}-{month}.json estatico nao existe.
     window.BI_REPORT_API = "https://<api-url-do-bi-config-via-coolify>";
   </script>
-  <script src="data.js"></script>
-  <script src="data-extras.js"></script>
+  <script src="data.js?v=20260526"></script>
   <!-- JSX pre-compilado pelo build-jsx.cjs. Sem Babel-standalone runtime. -->
-  <script src="app.bundle.js"></script>
+  <script src="app.bundle.js?v=20260526"></script>
 </body>
 </html>

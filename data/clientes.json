@@ -1,0 +1,3008 @@
+[
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "411.028.808-84",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2912977393,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "fax_ddd": "12",
+    "fax_numero": "39135510",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "20/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "18:59:45",
+      "hInc": "18:59:14",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "NATANAEL DOS SANTOS NASCIMENTO",
+    "pessoa_fisica": "S",
+    "razao_social": "NATANAEL DOS SANTOS NASCIMENTO",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Funcionário"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "981260461",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "999715102"
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "049.056.004-05",
+    "codigo_cliente_integracao": "6",
+    "codigo_cliente_omie": 2912838436,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:11",
+      "hInc": "17:57:10",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CLARA DE OLIVEIRA LIMA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "CLARA DE OLIVEIRA LIMA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "315.476.678-26",
+    "codigo_cliente_integracao": "10",
+    "codigo_cliente_omie": 2912838431,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:10",
+      "hInc": "17:57:10",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "SIDNEIA MORENA DE SOUZA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "SIDNEIA MORENA DE SOUZA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "369.739.608-04",
+    "codigo_cliente_integracao": "2",
+    "codigo_cliente_omie": 2912838426,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:10",
+      "hInc": "17:57:10",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "ROBSON LUIZ DOMINGOS DA SILVA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "ROBSON LUIZ DOMINGOS DA SILVA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "477.542.988-48",
+    "codigo_cliente_integracao": "9",
+    "codigo_cliente_omie": 2912838420,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:10",
+      "hInc": "17:57:09",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MIGUEL ZINANI DE OLIVEIRA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "MIGUEL ZINANI DE OLIVEIRA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "081.294.468-20",
+    "codigo_cliente_integracao": "1",
+    "codigo_cliente_omie": 2912838415,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:09",
+      "hInc": "17:57:09",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MARIA ANGELICA DOS REIS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "MARIA ANGELICA DOS REIS",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "435.182.048-90",
+    "codigo_cliente_integracao": "5",
+    "codigo_cliente_omie": 2912838409,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:09",
+      "hInc": "17:57:09",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "LEONARDO MARTINS ALVES GALDEANO",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "LEONARDO MARTINS ALVES GALDEANO",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "474.336.008-09",
+    "codigo_cliente_integracao": "7",
+    "codigo_cliente_omie": 2912838405,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:09",
+      "hInc": "17:57:08",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "JONATHAN HENRIQUE DA SILVA SANTOS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "JONATHAN HENRIQUE DA SILVA SANTOS",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "011.901.356-80",
+    "codigo_cliente_integracao": "4",
+    "codigo_cliente_omie": 2912838400,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:08",
+      "hInc": "17:57:08",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "FABRICIO RAMOS DOS SANTOS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "FABRICIO RAMOS DOS SANTOS",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "440.408.638-52",
+    "codigo_cliente_integracao": "11",
+    "codigo_cliente_omie": 2912838395,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "17:57:08",
+      "hInc": "17:57:08",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "AMANDA MAYUMI KOBAYASHI",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "AMANDA MAYUMI KOBAYASHI",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      },
+      {
+        "tag": "Funcionário"
+      },
+      {
+        "tag": "SALÁRIOS"
+      },
+      {
+        "tag": "FÉRIAS"
+      },
+      {
+        "tag": "ADIANT.1ª PARC.13º SAL."
+      },
+      {
+        "tag": "PAGTO.2ª PARC.13º SAL."
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "000.000.000-00",
+    "codigo_cliente_integracao": "_CLIENTE_CONSUMIDOR_",
+    "codigo_cliente_omie": 2912761819,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "15:36:26",
+      "hInc": "15:36:26",
+      "uAlt": "WEBSERVICE",
+      "uInc": "WEBSERVICE"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "Cliente Consumidor / Sem Tomador",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "razao_social": "Cliente Consumidor / Sem Tomador",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "450.181.288-52",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925489469,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "04/07/2026",
+      "dInc": "04/07/2026",
+      "hAlt": "12:58:09",
+      "hInc": "12:58:01",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "YAN OLIVEIRA PRADO DE ALMEIDA",
+    "pessoa_fisica": "S",
+    "razao_social": "YAN OLIVEIRA PRADO DE ALMEIDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ]
+  },
+  {
+    "bairro": "",
+    "bloquear_faturamento": "N",
+    "cep": "",
+    "cidade": "",
+    "cidade_ibge": "",
+    "cnpj_cpf": "00.000.000/0000-00",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2926068430,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "07/07/2026",
+      "dInc": "07/07/2026",
+      "hAlt": "20:11:07",
+      "hInc": "20:10:05",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CAIXA ECONOMICA FEDERAL",
+    "pessoa_fisica": "N",
+    "razao_social": "CAIXA ECONOMICA FEDERAL",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ]
+  },
+  {
+    "bairro": "CENTRO",
+    "bloquear_faturamento": "N",
+    "cep": "06401127",
+    "cidade": "BARUERI (SP)",
+    "cidade_ibge": "3505708",
+    "cnae": "8299799",
+    "cnpj_cpf": "22.725.828/0001-40",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2917962764,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "convenio7@drogabella.com.br",
+    "endereco": "AVENIDA JOAO ACACIO DE ALMEIDA",
+    "enderecoEntrega": {},
+    "endereco_numero": "210",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "16/06/2026",
+      "dInc": "16/06/2026",
+      "hAlt": "15:53:03",
+      "hInc": "15:52:58",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CDC ADMINISTRACAO DE CONVENIOS LTDA",
+    "pessoa_fisica": "N",
+    "razao_social": "CDC ADMINISTRACAO DE CONVENIOS LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3938-3633",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "38762992"
+  },
+  {
+    "bairro": "JARDIM ESTORIL",
+    "bloquear_faturamento": "N",
+    "cep": "17014300",
+    "cidade": "BAURU (SP)",
+    "cidade_ibge": "3506003",
+    "cnae": "6202300",
+    "cnpj_cpf": "08.768.029/0001-20",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2918900892,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "eli@monisoftware.com.br",
+    "endereco": "RUA RUBENS ARRUDA",
+    "enderecoEntrega": {},
+    "endereco_numero": "15-37",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/06/2026",
+      "dInc": "19/06/2026",
+      "hAlt": "16:18:32",
+      "hInc": "16:18:06",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MONI SOFTWARE LTDA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "MONI SOFTWARE LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "14",
+    "telefone1_numero": "3235-3800",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "Jardim Dos Oliveiras",
+    "bloquear_faturamento": "N",
+    "cep": "13044125",
+    "cidade": "CAMPINAS (SP)",
+    "cidade_ibge": "3509502",
+    "cnae": "2512800",
+    "cnpj_cpf": "57.834.699/0001-02",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2924229326,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "Avenida Jorge Tibirica",
+    "enderecoEntrega": {},
+    "endereco_numero": "1546",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_ddd": "19",
+    "fax_numero": "3272-0758",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "30/06/2026",
+      "dInc": "30/06/2026",
+      "hAlt": "15:31:24",
+      "hInc": "15:19:58",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "SO PORTOES",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "SO PORTOES - ALUMINIO E FERRO LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "S",
+      "tipo_assinante": "6"
+    },
+    "tags": [],
+    "telefone1_ddd": "19",
+    "telefone1_numero": "3295-0691",
+    "telefone2_ddd": "19",
+    "telefone2_numero": "3295-1563"
+  },
+  {
+    "bairro": "LOTEAMENTO HORIZONTE AZUL",
+    "bloquear_faturamento": "N",
+    "cep": "13254107",
+    "cidade": "ITATIBA (SP)",
+    "cidade_ibge": "3523404",
+    "cnae": "9511800",
+    "cnpj_cpf": "41.941.211/0001-06",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2914369272,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "paturca@live.com,comercial@striketi.com.br",
+    "endereco": "RUA VERGILIO ANGELON",
+    "enderecoEntrega": {},
+    "endereco_numero": "57",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "27/05/2026",
+      "dInc": "27/05/2026",
+      "hAlt": "16:38:52",
+      "hInc": "16:37:20",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "382.211.397.119",
+    "inscricao_municipal": "",
+    "nome_fantasia": "STRIKE TI",
+    "optante_simples_nacional": "S",
+    "pessoa_fisica": "N",
+    "razao_social": "STRIKE TI TECNOLOGIA LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "9419-9280",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "VILA YARA",
+    "bloquear_faturamento": "N",
+    "cep": "06020902",
+    "cidade": "OSASCO (SP)",
+    "cidade_ibge": "3534401",
+    "cnpj_cpf": "14.380.200/0001-21",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2916620943,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "juridico@ifood.com.br",
+    "endereco": "AVENIDA DOS AUTONOMISTAS 1496",
+    "enderecoEntrega": {},
+    "endereco_numero": "1.496",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "10/06/2026",
+      "dInc": "10/06/2026",
+      "hAlt": "14:35:04",
+      "hInc": "14:35:04",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A.",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A.",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3634-3360"
+  },
+  {
+    "bairro": "VILA YARA",
+    "bloquear_faturamento": "N",
+    "cep": "06020010",
+    "cidade": "OSASCO (SP)",
+    "cidade_ibge": "3534401",
+    "cnae": "6920601",
+    "cnpj_cpf": "21.953.085/0001-00",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925984342,
+    "codigo_pais": "1058",
+    "complemento": "SALA ESCRITORIO 2008",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "financeiro@agylis.com.br",
+    "endereco": "AVENIDA DOS AUTONOMISTAS",
+    "enderecoEntrega": {},
+    "endereco_numero": "900",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "07/07/2026",
+      "dInc": "07/07/2026",
+      "hAlt": "14:03:31",
+      "hInc": "14:03:08",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "AGYLIS CONTABILIDADE LTDA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "AGYLIS CONTABILIDADE LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "7610-6452",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "STA ISSBEL",
+    "bloquear_faturamento": "N",
+    "cep": "12620000",
+    "cidade": "PIQUETE (SP)",
+    "cidade_ibge": "3538501",
+    "cnpj_cpf": "317.181.898-18",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925488510,
+    "codigo_pais": "1058",
+    "complemento": "C",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "PIQUETE",
+    "enderecoEntrega": {},
+    "endereco_numero": "142",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_ddd": "12",
+    "fax_numero": "997658656",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "04/07/2026",
+      "dInc": "04/07/2026",
+      "hAlt": "12:42:39",
+      "hInc": "12:42:32",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "JOSIANA DA SILVA",
+    "pessoa_fisica": "S",
+    "razao_social": "JOSIANA DA SILVA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "991757105",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "981090337"
+  },
+  {
+    "bairro": "Barra Da Tijuca",
+    "bloquear_faturamento": "N",
+    "cep": "22640102",
+    "cidade": "RIO DE JANEIRO (RJ)",
+    "cidade_ibge": "3304557",
+    "cnae": "4646001",
+    "cnpj_cpf": "68.735.232/0001-21",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2923974975,
+    "codigo_pais": "1058",
+    "complemento": "Bloco 1 Sala 239",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "Avenida Das Americas",
+    "enderecoEntrega": {},
+    "endereco_numero": "3200",
+    "enviar_anexos": "N",
+    "estado": "RJ",
+    "exterior": "N",
+    "fax_ddd": "21",
+    "fax_numero": "99493-3955",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "29/06/2026",
+      "dInc": "29/06/2026",
+      "hAlt": "09:57:30",
+      "hInc": "09:57:25",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MEXTRA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "MEXTRA COSMETICOS LTDA.",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "21",
+    "telefone1_numero": "3231-3700",
+    "telefone2_ddd": "21",
+    "telefone2_numero": "2270-5666"
+  },
+  {
+    "bairro": "PARQUE INDUSTRIAL",
+    "bloquear_faturamento": "N",
+    "cep": "12235560",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "4753900",
+    "cnpj_cpf": "02.550.149/0001-70",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2917022189,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "adm@kyriuscontabil.com.br",
+    "endereco": "AVENIDA FORTALEZA",
+    "enderecoEntrega": {},
+    "endereco_numero": "518",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "12/06/2026",
+      "dInc": "12/06/2026",
+      "hAlt": "16:52:06",
+      "hInc": "16:51:25",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "125.322.563.114",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MULTISEG",
+    "optante_simples_nacional": "S",
+    "pessoa_fisica": "N",
+    "razao_social": "ALEX ASSIS COMERCIAL ELETRONICO LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3934-9155",
+    "tipo_atividade": "1"
+  },
+  {
+    "bairro": "JARDIM OSWALDO CRUZ",
+    "bloquear_faturamento": "N",
+    "cep": "12216540",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "6209100",
+    "cnpj_cpf": "24.626.902/0001-04",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2917963950,
+    "codigo_pais": "1058",
+    "complemento": "SALA 1.001",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "financeiro@econdos.com.br",
+    "endereco": "RUA REPUBLICA DO IRAQUE",
+    "enderecoEntrega": {},
+    "endereco_numero": "40",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "16/06/2026",
+      "dInc": "16/06/2026",
+      "hAlt": "15:58:25",
+      "hInc": "15:58:21",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "ECONDOS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "ECONDOS SISTEMAS LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "2000-8439",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "JARDIM DAS INDUSTRIAS",
+    "bloquear_faturamento": "N",
+    "cep": "12240180",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnpj_cpf": "362.753.398-45",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2916675400,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "RUA LEME",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_ddd": "12",
+    "fax_numero": "974047774",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "10/06/2026",
+      "dInc": "10/06/2026",
+      "hAlt": "18:25:59",
+      "hInc": "18:25:59",
+      "uAlt": "WEBSERVICE",
+      "uInc": "WEBSERVICE"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "KATIA MARSON GOMES PEDREIRA VENEZIANI",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "S",
+    "produtor_rural": "N",
+    "razao_social": "KATIA MARSON GOMES PEDREIRA VENEZIANI",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "992424058",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "978121515"
+  },
+  {
+    "bairro": "SANTANA",
+    "bloquear_faturamento": "N",
+    "cep": "12212000",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "8299799",
+    "cnpj_cpf": "10.295.212/0001-05",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2917377394,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "supervisao@consorcio123.com.br",
+    "endereco": "AVENIDA RUI BARBOSA",
+    "enderecoEntrega": {},
+    "endereco_numero": "15",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "15/06/2026",
+      "dInc": "15/06/2026",
+      "hAlt": "13:25:08",
+      "hInc": "13:24:57",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONSORCIO 123",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "CONSORCIO 123",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3923-5780",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "JARDIM DAS INDUSTRIAS",
+    "bloquear_faturamento": "N",
+    "cep": "12240000",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "8020001",
+    "cnpj_cpf": "26.746.101/0001-08",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2915945345,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "processos@satelitecontabil.com.br",
+    "endereco": "AVENIDA DOUTOR JOAO BATISTA SOARES DE QUEIROZ JUNIOR",
+    "enderecoEntrega": {},
+    "endereco_numero": "2731",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_numero": "12240000",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "10/06/2026",
+      "dInc": "05/06/2026",
+      "hAlt": "13:25:13",
+      "hInc": "16:48:53",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "645.816.282.110",
+    "inscricao_municipal": "",
+    "nome_fantasia": "VIRTUAL SYSTEM TECNOLOGIA LTDA",
+    "optante_simples_nacional": "S",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "VIRTUAL SYSTEM TECNOLOGIA LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3904-1800",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "974108148",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "Parque Industrial",
+    "bloquear_faturamento": "N",
+    "cep": "12235560",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "4789005",
+    "cnpj_cpf": "38.389.644/0001-96",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2919841048,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "Avenida Fortaleza",
+    "enderecoEntrega": {},
+    "endereco_numero": "1265",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/06/2026",
+      "dInc": "25/06/2026",
+      "hAlt": "11:39:41",
+      "hInc": "11:39:29",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "M.LIMP",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "M.LIMP DO VALE PRODUTOS PARA LIMPEZA LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3308-7444"
+  },
+  {
+    "bairro": "PALMEIRAS DE SAO JOSE",
+    "bloquear_faturamento": "N",
+    "cep": "12237150",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "9491000",
+    "cnpj_cpf": "57.538.456/0001-27",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2913989164,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "20.de.agosto.sjc@gmail.com",
+    "endereco": "RUA OROS",
+    "enderecoEntrega": {},
+    "endereco_numero": "196",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "25/05/2026",
+      "hAlt": "13:05:32",
+      "hInc": "12:59:14",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "A LOJA MACONICA 20 DE AGOSTO",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "A LOJA MACONICA 20 DE AGOSTO",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3939-9276",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "JARDIM PETROPOLIS",
+    "bloquear_faturamento": "N",
+    "cep": "12237401",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "9499500",
+    "cnpj_cpf": "23.600.953/0001-96",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2913982662,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "dp@sabinocondominios.com.br",
+    "endereco": "RUA JOSE COBRA",
+    "enderecoEntrega": {},
+    "endereco_numero": "700",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "25/05/2026",
+      "hAlt": "12:25:53",
+      "hInc": "12:24:15",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "ASSOCIACAO DOS PROPRIETARIOS E PROMITENTES COMPRADORES DAS UNIDADES AUTONOMAS DO EDIFICIO VILLAGIO S",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "ASSOCIACAO DOS PROPRIETARIOS E PROMITENTES COMPRADORES DAS U",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3942-5252",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "JARDIM INDUSTRIAS",
+    "bloquear_faturamento": "N",
+    "cep": "12240000",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnpj_cpf": "04.047.902/0001-34",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2913982092,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "0001",
+      "cChavePix": "+5511989264397",
+      "codigo_banco": "450",
+      "conta_corrente": "11587188127-8",
+      "doc_titular": "04.047.902/0001-34",
+      "nome_titular": "SEGPOL SERVICOS LTDA",
+      "transf_padrao": "N"
+    },
+    "email": "processos@satelitecontabil.com.br",
+    "endereco": "AVENIDA DR.JOAO BATISTA SOARES DE Q. JUNIOR",
+    "enderecoEntrega": {},
+    "endereco_numero": "2731",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "27/05/2026",
+      "dInc": "25/05/2026",
+      "hAlt": "12:35:25",
+      "hInc": "12:24:09",
+      "uAlt": "P000479055",
+      "uInc": "WEBSERVICE"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "SEGPOL",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "SEGPOL SERVICOS LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "3904-1800"
+  },
+  {
+    "bairro": "ALTO DA PONTE",
+    "bloquear_faturamento": "N",
+    "cep": "12212515",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnpj_cpf": "388.052.288-00",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925489103,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "RUA JOANA D&apos;ARC STA",
+    "enderecoEntrega": {},
+    "endereco_numero": "60",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_ddd": "12",
+    "fax_numero": "988458420",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "04/07/2026",
+      "dInc": "04/07/2026",
+      "hAlt": "12:52:41",
+      "hInc": "12:52:35",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "MATEUS HENRIQUE DE FARIA",
+    "pessoa_fisica": "S",
+    "razao_social": "MATEUS HENRIQUE DE FARIA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "39418605",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "988509449"
+  },
+  {
+    "bairro": "JARDIM SATELITE",
+    "bloquear_faturamento": "N",
+    "cep": "12230420",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnpj_cpf": "39.520.704/0001-20",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2924524912,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "teknolinksjc@gmail.com",
+    "endereco": "RUA VIRGEM",
+    "enderecoEntrega": {},
+    "endereco_numero": "591",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "01/07/2026",
+      "dInc": "01/07/2026",
+      "hAlt": "20:26:42",
+      "hInc": "20:26:41",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "125.184.203.110",
+    "inscricao_municipal": "",
+    "nome_fantasia": "TEKNOLINK SJC",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "TEKNOLINK SJC DISTRIBUIDORA DE SOLUCAO EM SEGURANCA ELETRONI",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "8216-4568"
+  },
+  {
+    "bairro": "SANTANA",
+    "bloquear_faturamento": "N",
+    "cep": "12212140",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnae": "9492800",
+    "cnpj_cpf": "532.112.428-05",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925340748,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "53211242805",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "RUA PRESIDENTE CAMPOS SALLES",
+    "enderecoEntrega": {},
+    "endereco_numero": "",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "03/07/2026",
+      "dInc": "03/07/2026",
+      "hAlt": "16:02:42",
+      "hInc": "16:02:04",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "LEANDRO RIBEIRO CAVALCANTE DE SOUZA LIMA",
+    "pessoa_fisica": "S",
+    "razao_social": "LEANDRO RIBEIRO CAVALCANTE DE SOUZA LIMA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "99131-0882"
+  },
+  {
+    "bairro": "ALTO DA PONTE",
+    "bloquear_faturamento": "N",
+    "cep": "12212330",
+    "cidade": "SAO JOSE DOS CAMPOS (SP)",
+    "cidade_ibge": "3549904",
+    "cnpj_cpf": "365.936.448-70",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925487393,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "6015-1",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "0018297-4",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "S"
+    },
+    "endereco": "RUA ESTER OLIVEIRA BERTOLINI",
+    "enderecoEntrega": {},
+    "endereco_numero": "54",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "fax_ddd": "12",
+    "fax_numero": "996200410",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "04/07/2026",
+      "dInc": "04/07/2026",
+      "hAlt": "12:21:41",
+      "hInc": "12:19:53",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "ANDRE LUIZ ISIDORO DA SILVA",
+    "pessoa_fisica": "S",
+    "razao_social": "ANDRE LUIZ ISIDORO DA SILVA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "12",
+    "telefone1_numero": "996410859",
+    "telefone2_ddd": "12",
+    "telefone2_numero": "988497565"
+  },
+  {
+    "bairro": "JARDIM SAO PAULO(ZONA NORTE)",
+    "bloquear_faturamento": "N",
+    "cep": "02042010",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "53.551.099/0001-86",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2924378628,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "rodrigo@charleville.com.br",
+    "endereco": "AVENIDA LEONCIO DE MAGALHAES",
+    "enderecoEntrega": {},
+    "endereco_numero": "713",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "01/07/2026",
+      "dInc": "01/07/2026",
+      "hAlt": "10:47:46",
+      "hInc": "10:47:46",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "116.660.238.110",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CHARLEVILLE",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CHARLEVILLE CONFECCOES LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3052-2943"
+  },
+  {
+    "bairro": "CIDADE MONCOES",
+    "bloquear_faturamento": "N",
+    "cep": "04565001",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "6511101",
+    "cnpj_cpf": "02.102.498/0001-29",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2918899447,
+    "codigo_pais": "1058",
+    "complemento": "ANDAR 1 4 7 8 13 14 15 CONJ 11 41 71 81 131 141",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "kmontanaro@metlife.com",
+    "endereco": "RUA FLORIDA",
+    "enderecoEntrega": {},
+    "endereco_numero": "1595",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/06/2026",
+      "dInc": "19/06/2026",
+      "hAlt": "16:06:32",
+      "hInc": "16:06:28",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "METLIFE SEGUROS E PREVIDENCIA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "METROPOLITAN LIFE SEGUROS E PREVIDENCIA PRIVADA SA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "5501-9928",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "PINHEIROS",
+    "bloquear_faturamento": "N",
+    "cep": "05426100",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "17.895.646/0001-87",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2926247261,
+    "codigo_pais": "1058",
+    "complemento": "ANDAR 17 /18/19/20/21 E 22EDIF  FARIA LI",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "correspondencias@uber.com",
+    "endereco": "AVENIDA BRIG FARIA LIMA",
+    "enderecoEntrega": {},
+    "endereco_numero": "949",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "08/07/2026",
+      "dInc": "08/07/2026",
+      "hAlt": "18:23:02",
+      "hInc": "18:23:01",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "UBER DO BRASIL TECNOLOGIA LTDA.",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "UBER DO BRASIL TECNOLOGIA LTDA.",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3198-1311"
+  },
+  {
+    "bairro": "JARDIM DAS GRACAS",
+    "bloquear_faturamento": "N",
+    "cep": "02713000",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "54.292.368/0001-08",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2926040247,
+    "codigo_pais": "1058",
+    "complemento": "APT 24;BLOCO 4",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "rohsouza7@gmail.com",
+    "endereco": "RUA CORONEL EUCLIDES MACHADO",
+    "enderecoEntrega": {},
+    "endereco_numero": "324",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "07/07/2026",
+      "dInc": "07/07/2026",
+      "hAlt": "16:21:23",
+      "hInc": "16:21:23",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "54.292.368 ROGERIO DE SOUSA DOS SANTOS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "54.292.368 ROGERIO DE SOUSA DOS SANTOS",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "9270-5727"
+  },
+  {
+    "bairro": "PINHEIROS",
+    "bloquear_faturamento": "N",
+    "cep": "05423000",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "36.674.525/0001-50",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2925821860,
+    "codigo_pais": "1058",
+    "complemento": "ANDAR 7                   CONJ  77",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "legal@agylis.com.br",
+    "endereco": "AVENIDA EUSEBIO MATOSO",
+    "enderecoEntrega": {},
+    "endereco_numero": "690",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "06/07/2026",
+      "dInc": "06/07/2026",
+      "hAlt": "17:01:34",
+      "hInc": "17:01:34",
+      "uAlt": "WEBSERVICE",
+      "uInc": "WEBSERVICE"
+    },
+    "inscricao_estadual": "128.713.457.118",
+    "inscricao_municipal": "",
+    "nome_fantasia": "SIA FACILITIES",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "GSIA FACILITIES SERVICOS E SEGURANCA ELETRONICA LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3814-4650"
+  },
+  {
+    "bairro": "VILA MADALENA",
+    "bloquear_faturamento": "N",
+    "cep": "05433010",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "36.297.602/0001-08",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2926059684,
+    "codigo_pais": "1058",
+    "complemento": "CONJ  51",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "payments.latam@airbnb.com",
+    "endereco": "RUA ASPICUELTA",
+    "enderecoEntrega": {},
+    "endereco_numero": "422",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "07/07/2026",
+      "dInc": "07/07/2026",
+      "hAlt": "18:29:48",
+      "hInc": "18:29:48",
+      "uAlt": "P000479055",
+      "uInc": "P000479055"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "AIRBNB PLATAFORMA DIGITAL LTDA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "AIRBNB PLATAFORMA DIGITAL LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3076-4645"
+  },
+  {
+    "bairro": "CENTRO",
+    "bloquear_faturamento": "N",
+    "cep": "01015010",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "9420100",
+    "cnpj_cpf": "96.287.487/0001-04",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2916671878,
+    "codigo_pais": "1058",
+    "complemento": "1 ANDAR",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "sindeepres@sindeepres.org.br",
+    "endereco": "PRACA PADRE MANOEL DA NOBREGA",
+    "enderecoEntrega": {},
+    "endereco_numero": "21",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "10/06/2026",
+      "dInc": "10/06/2026",
+      "hAlt": "17:46:51",
+      "hInc": "17:46:25",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "SINDEEPRES",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "SIND DOS EMPREG EM EMPR DE PREST DE SERV A TERCE COLOCACAO E",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3113-0500",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "PINHEIROS",
+    "bloquear_faturamento": "N",
+    "cep": "05423000",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "8219999",
+    "cnpj_cpf": "40.034.286/0001-40",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2918504330,
+    "codigo_pais": "1058",
+    "complemento": "SALA 79",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "legal@agylis.com.br",
+    "endereco": "AVENIDA EUSEBIO MATOSO",
+    "enderecoEntrega": {},
+    "endereco_numero": "690",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "18/06/2026",
+      "dInc": "18/06/2026",
+      "hAlt": "18:00:22",
+      "hInc": "18:00:03",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "138.689.433.117",
+    "inscricao_municipal": "",
+    "nome_fantasia": "HERITAGE COMPANY LTDA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "HERITAGE COMPANY LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "4119-1161",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "PRQ ARARIBA",
+    "bloquear_faturamento": "N",
+    "cep": "05776490",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "436.540.398-20",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2918959234,
+    "codigo_pais": "1058",
+    "complemento": "C",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "RUA PROFESSOR SAMUEL BARNSLEY PESSOA",
+    "enderecoEntrega": {},
+    "endereco_numero": "25",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "19/06/2026",
+      "dInc": "19/06/2026",
+      "hAlt": "17:59:50",
+      "hInc": "17:58:35",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "LIDIANE CRISTINA DA SILVA",
+    "pessoa_fisica": "S",
+    "razao_social": "LIDIANE CRISTINA DA SILVA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "966808335",
+    "telefone2_ddd": "11",
+    "telefone2_numero": "21310008"
+  },
+  {
+    "bairro": "JARDIM ALVORADA",
+    "bloquear_faturamento": "N",
+    "cep": "12240540",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "8112500",
+    "cnpj_cpf": "65.045.908/0001-67",
+    "codigo_cliente_integracao": "8",
+    "codigo_cliente_omie": 2912763008,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "82476449",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "cristiane@condivale.com.br,natalia@condivale.com.br",
+    "endereco": "CASSIANO RICARDO",
+    "enderecoEntrega": {},
+    "endereco_numero": "71",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "26/05/2026",
+      "dInc": "19/05/2026",
+      "hAlt": "14:52:49",
+      "hInc": "15:37:26",
+      "uAlt": "P000757666",
+      "uInc": "P000757666"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONDOMINIO DO EDIFICIO PONTA NEGRA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CONDOMINIO DO EDIFICIO PONTA NEGRA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "JARDIM DAS INDUSTRIAS",
+    "bloquear_faturamento": "N",
+    "cep": "12241070",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "04.532.626/0001-08",
+    "codigo_cliente_integracao": "7",
+    "codigo_cliente_omie": 2912956231,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "91958576",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "financeiro@innovaadm.com.br",
+    "endereco": "MANOEL BOSCO RIBEIRO",
+    "enderecoEntrega": {},
+    "endereco_numero": "817",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "12:44:40",
+      "hInc": "15:03:42",
+      "uAlt": "P000757666",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "RESIDENCIAL ANA LUCIA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "RESIDENCIAL ANA LUCIA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "VILA EMA",
+    "bloquear_faturamento": "N",
+    "cep": "12243081",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "96.492.178/0001-76",
+    "codigo_cliente_integracao": "6",
+    "codigo_cliente_omie": 2912956225,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "39437678",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "apagar@atlascondominios.com.br",
+    "endereco": "DR JORGE ZARUR",
+    "enderecoEntrega": {},
+    "endereco_numero": "865",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "13:38:12",
+      "hInc": "15:03:41",
+      "uAlt": "P000757666",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONDOMINIO EDIFICIO PAUL CEZANNE",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CONDOMINIO EDIFICIO PAUL CEZANNE",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "VILA ADY ANA",
+    "bloquear_faturamento": "N",
+    "cep": "12243840",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "53.319.893/0001-07",
+    "codigo_cliente_integracao": "5",
+    "codigo_cliente_omie": 2912956222,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "91518732",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "fiscal1@freitasepozzatti.com.br,contas1@freitasepozzatti.com.br",
+    "endereco": "CEL JOSE DOMINGUES DE VASCONCELOS",
+    "enderecoEntrega": {},
+    "endereco_numero": "61",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "13:47:04",
+      "hInc": "15:03:41",
+      "uAlt": "P000757666",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONDOMINIO EDIFICIO CAPRI",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CONDOMINIO EDIFICIO CAPRI",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "PARQUE INDUSTRIAL",
+    "bloquear_faturamento": "N",
+    "cep": "12237550",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "03.219.145/0001-76",
+    "codigo_cliente_integracao": "4",
+    "codigo_cliente_omie": 2912956211,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "74040336",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "dp@sabinocondominios.com.br,financeiro3@sabinocondominios.com.br",
+    "endereco": "GUIDOVAL",
+    "enderecoEntrega": {},
+    "endereco_numero": "122",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "01/06/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "14:31:11",
+      "hInc": "15:03:41",
+      "uAlt": "P000757666",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONDOMINIO EDIFICIO ITAPOLIS",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CONDOMINIO EDIFICIO ITAPOLIS",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "VILA ADYANA",
+    "bloquear_faturamento": "N",
+    "cep": "12245011",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "53.326.294/0001-02",
+    "codigo_cliente_integracao": "3",
+    "codigo_cliente_omie": 2912956202,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "endereco": "AV DR ADEMAR DE BARROS",
+    "enderecoEntrega": {},
+    "endereco_numero": "920",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "20/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "15:03:40",
+      "hInc": "15:03:40",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "CONDOMINIO EDIFICIO CABO DA BOA ESPERANCA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "CONDOMINIO EDIFICIO CABO DA BOA ESPERANCA",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "JD MARINGÁ",
+    "bloquear_faturamento": "N",
+    "cep": "12245010",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnpj_cpf": "19.232.899/0001-04",
+    "codigo_cliente_integracao": "2",
+    "codigo_cliente_omie": 2912956191,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "contato": "91487783",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "financeiro@innovaadm.com.br",
+    "endereco": "DOUTOR ADHEMAR DE BARROS",
+    "enderecoEntrega": {},
+    "endereco_numero": "1737",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "25/05/2026",
+      "dInc": "20/05/2026",
+      "hAlt": "12:52:21",
+      "hInc": "15:03:40",
+      "uAlt": "P000757666",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "EDIFICIO INNOVARE",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "produtor_rural": "N",
+    "razao_social": "EDIFICIO INNOVARE",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Cliente"
+      }
+    ]
+  },
+  {
+    "bairro": "JARDIM MORUMBI",
+    "bloquear_faturamento": "N",
+    "cep": "05707001",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "6311900",
+    "cnpj_cpf": "02.351.877/0001-52",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2914973370,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "contabilidade_email@locaweb.com.br",
+    "endereco": "RUA ITAPAIUNA",
+    "enderecoEntrega": {},
+    "endereco_numero": "2434",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "01/06/2026",
+      "dInc": "01/06/2026",
+      "hAlt": "20:20:17",
+      "hInc": "20:15:27",
+      "uAlt": "P001032579",
+      "uInc": "P001032579"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "",
+    "nome_fantasia": "LOCAWEB",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "LWSA S/A",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [],
+    "telefone1_ddd": "11",
+    "telefone1_numero": "3544-0444",
+    "tipo_atividade": "2"
+  },
+  {
+    "bairro": "Vila Cordeiro",
+    "bloquear_faturamento": "N",
+    "cep": "04583100",
+    "cidade": "SAO PAULO (SP)",
+    "cidade_ibge": "3550308",
+    "cnae": "6311900",
+    "cnpj_cpf": "18.511.742/0001-47",
+    "codigo_cliente_integracao": "SYNC_OMIE_BILL",
+    "codigo_cliente_omie": 2916718761,
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "financeiro@omie.com.br",
+    "endereco": "Avenida Jurubatuba",
+    "enderecoEntrega": {},
+    "endereco_numero": "460",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "homepage": "www.omie.com.br",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "11/06/2026",
+      "dInc": "11/06/2026",
+      "hAlt": "05:42:27",
+      "hInc": "05:42:27",
+      "uAlt": "WEBSERVICE",
+      "uInc": "WEBSERVICE"
+    },
+    "inscricao_estadual": "",
+    "inscricao_municipal": "4.785.745-5",
+    "nome_fantasia": "Omiexperience",
+    "pessoa_fisica": "N",
+    "razao_social": "Omiexperience Ltda",
+    "recomendacoes": {
+      "gerar_boletos": "N"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_numero": "0800 942 7592"
+  },
+  {
+    "bairro": "JD. FATIMA",
+    "bloquear_faturamento": "N",
+    "cep": "18081170",
+    "cidade": "SOROCABA (SP)",
+    "cidade_ibge": "3552205",
+    "cnae": "4669999",
+    "cnpj_cpf": "01.051.918/0001-22",
+    "codigo_cliente_integracao": "",
+    "codigo_cliente_omie": 2920181047,
+    "codigo_pais": "1058",
+    "complemento": "",
+    "dadosBancarios": {
+      "agencia": "",
+      "cChavePix": "",
+      "codigo_banco": "",
+      "conta_corrente": "",
+      "doc_titular": "",
+      "nome_titular": "",
+      "transf_padrao": "N"
+    },
+    "email": "graziano@orggraziano.com.br",
+    "endereco": "RUA DR. FERNANDO SANTOS",
+    "enderecoEntrega": {},
+    "endereco_numero": "559",
+    "enviar_anexos": "N",
+    "estado": "SP",
+    "exterior": "N",
+    "inativo": "N",
+    "info": {
+      "cImpAPI": "N",
+      "dAlt": "27/06/2026",
+      "dInc": "27/06/2026",
+      "hAlt": "11:10:23",
+      "hInc": "11:10:13",
+      "uAlt": "P001509948",
+      "uInc": "P001509948"
+    },
+    "inscricao_estadual": "669.311.854.113",
+    "inscricao_municipal": "",
+    "nome_fantasia": "ISSEL SOROCABA",
+    "optante_simples_nacional": "N",
+    "pessoa_fisica": "N",
+    "razao_social": "COMERCIAL SO PORTOES DISTRIBUIDORA LTDA",
+    "recomendacoes": {
+      "gerar_boletos": "N",
+      "tipo_assinante": "6"
+    },
+    "tags": [
+      {
+        "tag": "Fornecedor"
+      }
+    ],
+    "telefone1_ddd": "15",
+    "telefone1_numero": "3232-9402",
+    "tipo_atividade": "4"
+  }
+]

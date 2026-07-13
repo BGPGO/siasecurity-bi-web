@@ -20,182 +20,12 @@ let cfg;
 try { cfg = require('./bi.config.js'); }
 catch (e) { console.error('ERRO: bi.config.js não encontrado. Rode `node bgp-bi.cjs init`.'); process.exit(1); }
 
-const FONTES_CFG = cfg.fontes || {};
-const HAS_FIN40 = Array.isArray(FONTES_CFG.adapters) && FONTES_CFG.adapters.includes('fin40');
-const DRIVE = (FONTES_CFG.drive && FONTES_CFG.drive.base_path) || '';
-const DATA_DIR = path.join(__dirname, 'data');
-const OUT = path.join(DATA_DIR, 'extras.json');
-
-// Quando cliente é fin40-only, não precisa de Drive. Branch XLSX é skipped.
-if (!DRIVE && !HAS_FIN40) {
-  console.error('ERRO: fontes.drive.base_path não definido em bi.config.js (e adapter fin40 não está em uso)');
+const DRIVE = (cfg.fontes && cfg.fontes.drive && cfg.fontes.drive.base_path) || '';
+if (!DRIVE) {
+  console.error('ERRO: fontes.drive.base_path não definido em bi.config.js');
   process.exit(1);
 }
-const XLSX_BRANCH_ENABLED = !!DRIVE && fs.existsSync(DRIVE);
-if (DRIVE && !XLSX_BRANCH_ENABLED) {
-  console.warn(`  [warn] Drive não acessível (${DRIVE}) — pulando branch XLSX`);
-}
-
-// ============================================================
-// Branch fin40 — cascata DRE a partir das RPCs oficiais
-// ============================================================
-function buildFin40Cascade() {
-  console.log('=== fin40 DRE Cascade ===');
-  const fluxoPath = path.join(DATA_DIR, 'fluxo_caixa_rpc.json');
-  const gruposPath = path.join(DATA_DIR, 'grupos_plano_contas.json');
-  const deParaPath = path.join(DATA_DIR, 'de_para.json');
-  const orcadoPath = path.join(DATA_DIR, 'orcado_realizado_rpc.json');
-
-  if (!fs.existsSync(fluxoPath) || !fs.existsSync(gruposPath)) {
-    console.warn('  [warn] fluxo_caixa_rpc.json ou grupos_plano_contas.json ausente — rode `node fetch-data.cjs` primeiro');
-    return null;
-  }
-
-  const fluxoRpc = JSON.parse(fs.readFileSync(fluxoPath, 'utf8'));
-  const grupos = JSON.parse(fs.readFileSync(gruposPath, 'utf8'));
-  const dePara = fs.existsSync(deParaPath) ? JSON.parse(fs.readFileSync(deParaPath, 'utf8')) : [];
-  const orcadoRpc = fs.existsSync(orcadoPath) ? JSON.parse(fs.readFileSync(orcadoPath, 'utf8')) : [];
-
-  // Índice grupo (lowercase) → meta
-  const gruposIdx = new Map();
-  for (const g of grupos) gruposIdx.set((g.nome || '').toLowerCase(), g);
-
-  // DRE_SECOES canonical (mesmo do fin40/src/types/financial.ts)
-  const DRE_SECOES = [
-    { key: 'receitas',        subtotalKey: 'receita_total',         subtotalLabel: 'Receita Total' },
-    { key: 'custos',          subtotalKey: 'lucro_bruto',           subtotalLabel: 'Lucro Bruto' },
-    { key: 'despesas',        subtotalKey: 'ebitda',                subtotalLabel: 'EBITDA' },
-    { key: 'impostos',        subtotalKey: 'resultado_operacional', subtotalLabel: 'Resultado Operacional' },
-    { key: 'pos_operacional', subtotalKey: 'geracao_caixa',         subtotalLabel: 'Geração de Caixa' },
-  ];
-
-  // Agrega RPC por (mes, secao, grupo, categoria).
-  // RPC retorna { mes, grupo, categoria, total_entrada, total_saida }.
-  // Valor líquido por linha = total_entrada - total_saida.
-  const byMes = new Map();
-  for (const row of fluxoRpc) {
-    const mes = row.mes;
-    const grupoNome = row.grupo || '⚠️ Sem Grupo';
-    const grupoMeta = gruposIdx.get(grupoNome.toLowerCase());
-    const secao = grupoMeta?.secao || null;
-    if (!secao) continue; // skip sem-secao (geralmente ⚠️ Sem Grupo)
-    const valor = (Number(row.total_entrada) || 0) - (Number(row.total_saida) || 0);
-
-    if (!byMes.has(mes)) {
-      byMes.set(mes, { mes, por_secao: {}, por_grupo: {}, por_categoria: {} });
-      for (const s of DRE_SECOES) byMes.get(mes).por_secao[s.key] = 0;
-    }
-    const m = byMes.get(mes);
-    m.por_secao[secao] += valor;
-
-    if (!m.por_grupo[grupoNome]) m.por_grupo[grupoNome] = { nome: grupoNome, secao, ordem: grupoMeta?.ordem || 9999, valor: 0, categorias: {} };
-    m.por_grupo[grupoNome].valor += valor;
-
-    const catKey = `${grupoNome}::${row.categoria || ''}`;
-    if (!m.por_categoria[catKey]) m.por_categoria[catKey] = { grupo: grupoNome, categoria: row.categoria || '', secao, valor: 0 };
-    m.por_categoria[catKey].valor += valor;
-    if (!m.por_grupo[grupoNome].categorias[row.categoria || '']) {
-      m.por_grupo[grupoNome].categorias[row.categoria || ''] = 0;
-    }
-    m.por_grupo[grupoNome].categorias[row.categoria || ''] += valor;
-  }
-
-  // Cascata por mês
-  const por_mes = [];
-  for (const [mes, m] of [...byMes.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
-    const s = m.por_secao;
-    const cascata = {
-      receita_total: s.receitas,
-      lucro_bruto: s.receitas + s.custos,
-      ebitda: s.receitas + s.custos + s.despesas,
-      resultado_operacional: s.receitas + s.custos + s.despesas + s.impostos,
-      geracao_caixa: s.receitas + s.custos + s.despesas + s.impostos + s.pos_operacional,
-    };
-    por_mes.push({
-      mes,
-      por_secao: m.por_secao,
-      cascata,
-      grupos: Object.values(m.por_grupo).sort((a, b) => a.ordem - b.ordem),
-    });
-  }
-
-  // Orçado vs Realizado por mês/categoria
-  const orcado_por_mes = {};
-  for (const r of orcadoRpc) {
-    if (!orcado_por_mes[r.mes]) orcado_por_mes[r.mes] = [];
-    orcado_por_mes[r.mes].push({
-      categoria: r.categoria,
-      grupo: r.grupo,
-      realizado: Number(r.realizado) || 0,
-      orcado: Number(r.orcado) || 0,
-      variacao: Number(r.variacao) || 0,
-      variacao_pct: Number(r.variacao_pct) || 0,
-    });
-  }
-
-  console.log(`  meses: ${por_mes.length} | grupos distintos: ${[...new Set(fluxoRpc.map(r => r.grupo))].length}`);
-  if (por_mes.length > 0) {
-    const ultMes = por_mes[por_mes.length - 1];
-    console.log(`  último mês (${ultMes.mes}): receita=${ultMes.cascata.receita_total.toFixed(0)} ebitda=${ultMes.cascata.ebitda.toFixed(0)} geracao=${ultMes.cascata.geracao_caixa.toFixed(0)}`);
-  }
-
-  return {
-    secoes: DRE_SECOES,
-    por_mes,
-    orcado_por_mes,
-    de_para_count: dePara.length,
-    grupos_count: grupos.length,
-  };
-}
-
-// Lê saldos_bancarios.json (puxado pelo adapter fin40) e devolve no shape
-// que PageTesouraria consome: { daily: [{data, total, contas:{}}], last, contas: [] }.
-function buildFin40Saldos() {
-  const p = path.join(DATA_DIR, 'saldos_bancarios.json');
-  if (!fs.existsSync(p)) return { daily: [], last: null, contas: [] };
-  try {
-    const rows = JSON.parse(fs.readFileSync(p, 'utf8'));
-    if (!Array.isArray(rows) || !rows.length) return { daily: [], last: null, contas: [] };
-    const byDate = new Map();
-    for (const r of rows) {
-      const data = r.data || r.dt || r.data_saldo;
-      const conta = (r.conta || r.banco || r.descricao || 'Conta').trim();
-      const valor = Number(r.saldo || r.valor || 0) || 0;
-      if (!data) continue;
-      if (!byDate.has(data)) byDate.set(data, { data, total: 0, contas: {} });
-      const o = byDate.get(data);
-      o.contas[conta] = valor;
-      o.total += valor;
-    }
-    const daily = [...byDate.values()].sort((a, b) => a.data.localeCompare(b.data));
-    const last = daily[daily.length - 1] || null;
-    const contas = [...new Set(rows.map(r => (r.conta || r.banco || r.descricao || '').trim()).filter(Boolean))];
-    console.log(`\n=== Saldos (fin40) ===\n  ${daily.length} dias | ultima data: ${last && last.data} | total: R$ ${last && last.total.toFixed(2)}`);
-    return { daily, last, contas };
-  } catch (e) {
-    console.error('  saldos (fin40) erro:', e.message);
-    return { daily: [], last: null, contas: [] };
-  }
-}
-
-// Se branch XLSX desabilitada, gera só fin40 e termina.
-if (!XLSX_BRANCH_ENABLED) {
-  const dre = HAS_FIN40 ? buildFin40Cascade() : null;
-  const saldos = HAS_FIN40 ? buildFin40Saldos() : { daily: [], last: null, contas: [] };
-  const out = {
-    fetched_at: new Date().toISOString(),
-    dre,    // fin40 cascade
-    saldos, // PageTesouraria consome esse shape
-  };
-  fs.writeFileSync(OUT, JSON.stringify(out, null, 2));
-  const js = '/* BI EXTRAS — gerado por build-data-extras.cjs (branch fin40-only). */\n' +
-    'window.BIT_EXTRAS = ' + JSON.stringify(out) + ';\n';
-  fs.writeFileSync(path.join(__dirname, 'data-extras.js'), js);
-  console.log(`\n=== OK (fin40-only) ===`);
-  console.log(`  ${OUT}`);
-  console.log(`  ${path.join(__dirname, 'data-extras.js')}`);
-  process.exit(0);
-}
+const OUT = path.join(__dirname, 'data', 'extras.json');
 
 function readSheet(file, sheetName) {
   const wb = XLSX.readFile(path.join(DRIVE, file));
@@ -407,11 +237,81 @@ function aggCampanha(items) {
 }
 const adsCampanhasAgg = aggCampanha(ads);
 
-const dreCascade = HAS_FIN40 ? buildFin40Cascade() : null;
+// ============================================================
+// Pedidos de venda faturados (via Omie API)
+// ============================================================
+console.log('\n=== Pedidos Faturados (Omie API) ===');
+const pedidosApi = (function () {
+  try {
+    const pedFile = path.join(__dirname, 'data', 'pedidos.json');
+    if (!fs.existsSync(pedFile)) {
+      console.log('  data/pedidos.json não encontrado — rode fetch-data.cjs primeiro');
+      return null;
+    }
+    const items = JSON.parse(fs.readFileSync(pedFile, 'utf8'));
+    if (!items.length) { console.log('  0 itens'); return null; }
+
+    const anoRef = (() => {
+      const ys = items.map(x => x.data ? parseInt(x.data.slice(0, 4)) : null).filter(Boolean);
+      return ys.length ? Math.max(...ys) : new Date().getFullYear();
+    })();
+    const itemsAno = items.filter(x => x.data && x.data.startsWith(String(anoRef)));
+    console.log(`  ${items.length} itens total | ano ref ${anoRef}: ${itemsAno.length} itens`);
+
+    function aggBy(arr, keyFn) {
+      const m = new Map();
+      for (const it of arr) {
+        const k = keyFn(it) || 'Sem categoria';
+        if (!m.has(k)) m.set(k, { name: k, value: 0, qtd: 0 });
+        const o = m.get(k);
+        o.value += it.valor;
+        o.qtd   += it.qtd || 0;
+      }
+      return [...m.values()].sort((a, b) => b.value - a.value);
+    }
+
+    const porFamilia  = aggBy(itemsAno, x => x.familia).slice(0, 20);
+    const porProduto  = aggBy(itemsAno, x => x.produto).slice(0, 30);
+    const porCliente  = aggBy(itemsAno, x => x.cliente).slice(0, 15);
+    const porVendedor = aggBy(itemsAno, x => x.vendedor).filter(v => v.name && v.name !== 'Sem Vendedor').slice(0, 20);
+
+    const porMes = Array(12).fill(0).map((_, i) => ({
+      m: ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'][i],
+      valor: 0, qtd: 0, numPedidos: 0,
+    }));
+    const pedidosSet = new Map();
+    for (const it of itemsAno) {
+      const mIdx = it.data ? parseInt(it.data.slice(5, 7)) - 1 : null;
+      if (mIdx != null && mIdx >= 0 && mIdx < 12) {
+        porMes[mIdx].valor += it.valor;
+        porMes[mIdx].qtd   += it.qtd || 0;
+        if (!pedidosSet.has(mIdx)) pedidosSet.set(mIdx, new Set());
+        if (it.nCodPed) pedidosSet.get(mIdx).add(it.nCodPed);
+      }
+    }
+    for (let i = 0; i < 12; i++) {
+      porMes[i].numPedidos = pedidosSet.has(i) ? pedidosSet.get(i).size : 0;
+    }
+
+    const totalValor    = itemsAno.reduce((s, x) => s + x.valor, 0);
+    const totalQtd      = itemsAno.reduce((s, x) => s + x.qtd, 0);
+    const numPedidos    = new Set(itemsAno.map(x => x.nCodPed).filter(Boolean)).size;
+    const numClientes   = new Set(itemsAno.map(x => x.cliente).filter(Boolean)).size;
+    const numProdutos   = new Set(itemsAno.map(x => x.produto).filter(Boolean)).size;
+    const ticketMedio   = numPedidos > 0 ? totalValor / numPedidos : 0;
+    console.log(`  R$ ${totalValor.toFixed(2)} | pedidos: ${numPedidos} | ticket médio: ${ticketMedio.toFixed(2)}`);
+
+    return { anoRef, porFamilia, porProduto, porCliente, porVendedor, porMes,
+      totais: { totalValor, totalQtd, numPedidos, numClientes, numProdutos, ticketMedio, anoRef },
+      items: itemsAno };
+  } catch (e) {
+    console.error('  pedidos erro:', e.message);
+    return null;
+  }
+})();
 
 const out = {
   fetched_at: new Date().toISOString(),
-  dre: dreCascade, // cascata DRE fin40 (null se cliente não tem fin40)
   abc: {
     rows: abc,
     counts: abcCount,
@@ -432,6 +332,7 @@ const out = {
     campanhasAgg: adsCampanhasAgg,
     totais: adsTotais,
   },
+  pedidos: pedidosApi,
   crm: (function() {
     try {
       const wb = XLSX.readFile(path.join(DRIVE, 'consolidado (33).xlsx'));

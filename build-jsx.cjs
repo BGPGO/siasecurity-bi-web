@@ -69,14 +69,16 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
     tesouraria: '06 Tesouraria',
     comparativo: '07 Comparativo',
     relatorio: '08 Relatório IA',
-    faturamento_produto: '09 Faturamento por Produto',
-    curva_abc: '10 Curva ABC',
-    marketing: '11 Marketing ADS',
-    valuation: '12 Valuation',
-    hierarquia: '13 Hierarquia ADS',
-    detalhado: '14 Detalhado',
-    profunda_cliente: '15 Profunda Cliente',
-    crm: '16 CRM',
+    fluxo_projetado: '09 Fluxo Projetado',
+    faturamento_produto: '10 Faturamento por Produto',
+    cmv: '10 CMV',
+    curva_abc: '11 Curva ABC',
+    marketing: '12 Marketing ADS',
+    valuation: '13 Valuation',
+    hierarquia: '14 Hierarquia ADS',
+    detalhado: '15 Detalhado',
+    profunda_cliente: '16 Profunda Cliente',
+    crm: '17 CRM',
   };
   function App() {
     var p = useState('overview'); var page = p[0], setPage = p[1];
@@ -95,22 +97,37 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
       try { var y = parseInt(localStorage.getItem('bi.year'), 10); return y > 1900 ? y : (window.REF_YEAR || new Date().getFullYear()); } catch (e) { return window.REF_YEAR || new Date().getFullYear(); }
     });
     var year = ys[0], setYear = ys[1];
-    // months: array de meses 1-12 selecionados; [] = "Ano completo" (= mostra tudo).
-    // Retrocompat com localStorage 'bi.month' (single number): migra pra 'bi.months' (JSON array).
     var ms = useState(function () {
-      try {
-        var raw = localStorage.getItem('bi.months');
-        if (raw) {
-          var arr = JSON.parse(raw);
-          if (Array.isArray(arr)) return arr.filter(function (m) { return m >= 1 && m <= 12; });
-        }
-        // legacy migration: 'bi.month' (number)
-        var m = parseInt(localStorage.getItem('bi.month'), 10);
-        if (m >= 1 && m <= 12) return [m];
-      } catch (e) {}
-      return [];
+      try { var m = parseInt(localStorage.getItem('bi.month'), 10); return (m >= 0 && m <= 12) ? m : 0; } catch (e) { return 0; }
     });
-    var months = ms[0], setMonths = ms[1];
+    var month = ms[0], setMonth = ms[1];
+    var ds = useState(function () {
+      try { var d = parseInt(localStorage.getItem('bi.day'), 10); return (d >= 1 && d <= 31) ? d : 0; } catch (e) { return 0; }
+    });
+    var day = ds[0], setDay = ds[1];
+    var dm = useState(function () {
+      try { return localStorage.getItem('bi.dayMode') || 'dia'; } catch (e) { return 'dia'; }
+    });
+    var dayMode = dm[0], setDayMode = dm[1];
+    var df = useState(function () {
+      try { var d = parseInt(localStorage.getItem('bi.dayFrom'), 10); return (d >= 1 && d <= 31) ? d : 0; } catch (e) { return 0; }
+    });
+    var dayFrom = df[0], setDayFrom = df[1];
+    var dt = useState(function () {
+      try { var d = parseInt(localStorage.getItem('bi.dayTo'), 10); return (d >= 1 && d <= 31) ? d : 0; } catch (e) { return 0; }
+    });
+    var dayTo = dt[0], setDayTo = dt[1];
+    var wk = useState(function () {
+      try { var w = parseInt(localStorage.getItem('bi.week'), 10); return (w >= 1 && w <= 5) ? w : 0; } catch (e) { return 0; }
+    });
+    var week = wk[0], setWeek = wk[1];
+    var si = useState(function () {
+      try { return localStorage.getItem('bi.semInvestimento') === 'true'; } catch (e) { return false; }
+    });
+    var semInvestimento = si[0], setSemInvestimento = si[1];
+
+    var fcc = useState([]); var filterCentroCusto = fcc[0], setFilterCentroCusto = fcc[1];
+    var fcat = useState([]); var filterCategoria = fcat[0], setFilterCategoria = fcat[1];
 
     // BI export multi-tela: array de page-ids ou null. Quando setado, renderiza
     // todas as telas em sequencia + chama window.print() depois do layout pintar.
@@ -190,18 +207,64 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
     useEffect(function () {
       try { localStorage.setItem('bi.year', String(year)); } catch (e) {}
       setDrilldown(null);
+      setDay(0); setDayFrom(0); setDayTo(0); setWeek(0);
     }, [year]);
 
     useEffect(function () {
-      try { localStorage.setItem('bi.months', JSON.stringify(months)); } catch (e) {}
+      try { localStorage.setItem('bi.month', String(month)); } catch (e) {}
       setDrilldown(null);
-    }, [months]);
+      setDay(0); setDayFrom(0); setDayTo(0); setWeek(0);
+    }, [month]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.day', String(day)); } catch (e) {}
+    }, [day]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.dayMode', dayMode); } catch (e) {}
+    }, [dayMode]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.dayFrom', String(dayFrom)); } catch (e) {}
+    }, [dayFrom]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.dayTo', String(dayTo)); } catch (e) {}
+    }, [dayTo]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.week', String(week)); } catch (e) {}
+    }, [week]);
+
+    useEffect(function () {
+      try { localStorage.setItem('bi.semInvestimento', String(semInvestimento)); } catch (e) {}
+    }, [semInvestimento]);
 
     var handleSetPage = function (newPage) {
       setPage(newPage);
       setSidebarOpen(false);
       setDrilldown(null);
+      setDay(0); setDayFrom(0); setDayTo(0); setWeek(0);
     };
+
+    var MESES_ABBR_D = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    var WEEK_RANGES_MAP = [[1,7],[8,14],[15,21],[22,28],[29,31]];
+    var effectiveDrilldown;
+    if (month > 0) {
+      if (dayMode === 'dia' && day > 0) {
+        effectiveDrilldown = { type: 'dia', value: day, label: String(day) + ' ' + (MESES_ABBR_D[month - 1] || '') };
+      } else if (dayMode === 'intervalo' && dayFrom > 0 && dayTo > 0) {
+        effectiveDrilldown = { type: 'dia_range', from: Math.min(dayFrom, dayTo), to: Math.max(dayFrom, dayTo), label: String(dayFrom) + '–' + String(dayTo) + ' ' + (MESES_ABBR_D[month - 1] || '') };
+      } else if (dayMode === 'semana' && week > 0) {
+        var wr = WEEK_RANGES_MAP[week - 1];
+        effectiveDrilldown = { type: 'dia_range', from: wr[0], to: wr[1], label: 'Sem. ' + String(week) + ' ' + (MESES_ABBR_D[month - 1] || '') };
+      } else {
+        effectiveDrilldown = drilldown;
+      }
+    } else {
+      effectiveDrilldown = drilldown;
+    }
+    var handleSetDrilldown = function (dd) { setDay(0); setDayFrom(0); setDayTo(0); setWeek(0); setDrilldown(dd); };
 
     var PAGE_COMPS = {
       overview: PageOverview,
@@ -212,7 +275,9 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
       tesouraria: PageTesouraria,
       comparativo: PageComparativo,
       relatorio: PageRelatorio,
+      fluxo_projetado: PageFluxoProjetado,
       faturamento_produto: PageFaturamentoProduto,
+      cmv: PageCMV,
       curva_abc: PageCurvaABC,
       marketing: PageMarketing,
       valuation: PageValuation,
@@ -227,6 +292,10 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
       ? function (props) { return React.createElement(window.UpsellPage, { pageId: page }); }
       : PAGE_COMPS[page];
 
+    var PAGES_WITH_INVESTIMENTO = ['overview', 'despesa', 'fluxo', 'tesouraria', 'comparativo'];
+    var extraFilters = (filterCentroCusto.length > 0 || filterCategoria.length > 0)
+      ? { centroCusto: filterCentroCusto, categoria: filterCategoria } : undefined;
+
     var commonProps = {
       filters: filters,
       setFilters: setFilters,
@@ -234,13 +303,12 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
       statusFilter: statusFilter,
       year: year,
       setYear: setYear,
-      months: months,
-      setMonths: setMonths,
-      // retrocompat: passa month (number) pras pages que nao migraram pra months.
-      // single-mes -> number; multi/vazio -> 0 (= ano completo legado).
-      month: months.length === 1 ? months[0] : 0,
-      drilldown: drilldown,
-      setDrilldown: setDrilldown,
+      month: month,
+      setMonth: setMonth,
+      drilldown: effectiveDrilldown,
+      setDrilldown: handleSetDrilldown,
+      semInvestimento: semInvestimento,
+      extraFilters: extraFilters,
     };
 
     // Modo print multi-tela: renderiza todas as paginas selecionadas em sequencia
@@ -279,8 +347,24 @@ const PAGE_MODE_INJECT = `\n// Injetado por build-jsx.cjs a partir de bi.config.
             setStatusFilter={setStatusFilter}
             year={year}
             setYear={setYear}
-            months={months}
-            setMonths={setMonths}
+            month={month}
+            setMonth={setMonth}
+            dayMode={dayMode}
+            setDayMode={setDayMode}
+            day={day}
+            setDay={setDay}
+            dayFrom={dayFrom}
+            setDayFrom={setDayFrom}
+            dayTo={dayTo}
+            setDayTo={setDayTo}
+            week={week}
+            setWeek={setWeek}
+            semInvestimento={semInvestimento}
+            setSemInvestimento={PAGES_WITH_INVESTIMENTO.indexOf(page) !== -1 ? setSemInvestimento : null}
+            filterCentroCusto={filterCentroCusto}
+            setFilterCentroCusto={setFilterCentroCusto}
+            filterCategoria={filterCategoria}
+            setFilterCategoria={setFilterCategoria}
           />
           <PageComp {...commonProps} />
         </div>
